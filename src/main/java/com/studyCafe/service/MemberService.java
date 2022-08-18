@@ -10,13 +10,22 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
-    @Autowired
+
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
 
 
     public Member join(Member member){
+        validateDuplicateMember(member);
         return memberRepository.save(member);
     }
+
+    private void validateDuplicateMember(Member member) {
+        memberRepository.findByName(member.getId())
+                .ifPresent(m -> {
+                    throw new IllegalStateException("이미 존재하는 회원입니다.");
+                });
+    }
+
 }
