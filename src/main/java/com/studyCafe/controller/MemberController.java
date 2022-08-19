@@ -20,11 +20,22 @@ public class MemberController {
         this.memberService = memberService;
     }
 
-    @RequestMapping("members/login")
-    public String login() {
+    @GetMapping("members/login")
+    public String loginForm() {
         return "members/login";
     }
 
+    @PostMapping(value = "members/login")
+    public String login(Member member, Model model){
+        // id, pw 확인
+        // T인 경우 index F인 경우 login
+        boolean result = memberService.validateMember(member);
+
+        if(result)  return "/members/login";
+
+        model.addAttribute("id", member.getId());
+        return "index";
+    }
     @GetMapping("members/new")
     public String createForm(){
         return "/members/createMemberForm";
@@ -33,7 +44,7 @@ public class MemberController {
     @PostMapping(value = "members/new")
     public String create(Member member){
         memberService.join(member);
-        return "redirect:/members/login";
+        return "/members/login";
     }
 
 }

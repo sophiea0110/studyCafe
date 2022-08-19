@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
     메인화면
+    <p th:text="'안녕하세요. ' + ${id}님" >안녕하세요. 손님</p>
     <a href="/members/login">로그인</a>
 </body>
 </html>

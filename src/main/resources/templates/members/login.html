@@ -7,9 +7,11 @@
 </head>
 <body>
 로그인화면
-<input type="text" />
-<input type="password" />
-<a href="">로그인</a>
-<a href="/members/new">회원가입</a>
+<form action="/members/login" method="post">
+    <input name="id" type="text" />
+    <input name="pw" type="password" />
+    <button type="submit">로그인</button>
+    <a href="/members/new">회원가입</a>
+</form>
 </body>
 </html>
