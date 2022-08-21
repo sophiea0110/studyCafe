@@ -5,13 +5,18 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<link rel="stylesheet" href="../css/login-style.css">
 <body>
-로그인화면
-<form action="/members/login" method="post">
-    <input name="id" type="text" />
-    <input name="pw" type="password" />
-    <button type="submit">로그인</button>
-    <a href="/members/new">회원가입</a>
-</form>
+    <div class="login-page">
+        <form class="login-form" action="/members/login" method="post">
+            <input class="login-item" name="id" type="text" />
+            <input class="login-item" name="pw" type="password" />
+            <button class="login-item" type="submit">로그인</button>
+        </form>
+        <div class="info-user">
+            <a class="user-item" href="">id/pw 찾기</a>
+            <a class="user-item" href="/members/new">회원가입</a>
+        </div>
+    </div>
 </body>
 </html>
