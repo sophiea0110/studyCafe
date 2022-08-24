@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class MemberController {
 
@@ -21,21 +24,25 @@ public class MemberController {
     }
 
     @GetMapping("members/login")
-    public String loginForm() {
+    public String loginForm(HttpServletRequest request) {
         return "members/login";
     }
 
     @PostMapping(value = "members/login")
-    public String login(Member member, Model model){
+    public String login(Member member, HttpServletRequest request){
         // id, pw 확인
-        // T인 경우 index F인 경우 login
+        // F인 경우 index T인 경우 login
         boolean result = memberService.validateMember(member);
 
-        if(result)  return "/members/login";
+        if(result){
+            return "/members/login";
+        }
 
-        model.addAttribute("id", member.getId());
-        return "index";
+        HttpSession session = request.getSession();
+        session.setAttribute("MemberId", member.getId());
+        return "redirect:/";
     }
+
     @GetMapping("members/new")
     public String createForm(){
         return "/members/createMemberForm";
