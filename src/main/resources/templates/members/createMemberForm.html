@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<link rel="stylesheet" href="../css/join-style.css">
+<link rel="stylesheet" th:href="@{/css/join-style.css}" />
 <body>
 <div class="join-page">
     <form class="join-form" action="/members/new" method="post">
