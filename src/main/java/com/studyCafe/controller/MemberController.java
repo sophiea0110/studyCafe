@@ -28,6 +28,16 @@ public class MemberController {
         return "members/login";
     }
 
+    @GetMapping("members/logout")
+    public String logout(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+
+        if (session != null) {
+            session.invalidate();
+        }
+        return "redirect:/";
+    }
+
     @PostMapping(value = "members/login")
     public String login(Member member, HttpServletRequest request){
         // id, pw 확인

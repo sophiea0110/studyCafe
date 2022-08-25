@@ -8,8 +8,9 @@
 <link rel="stylesheet" href="css/index-style.css">
 <body>
     <div class="container-top">
-        <div th:text="${MemberId}"></div>
-        <a href="/members/login">로그인</a>
+        <div th:text="${session.MemberId} + ' 님 환영합니다  '" th:if="${session.MemberId != empty}"></div>
+        <a th:if="${session.MemberId != empty}" href="/members/logout">로그아웃</a>
+        <a th:if="${session.MemberId == empty}" href="/members/login">로그인</a>
     </div>
 
     <div class="container-mid">

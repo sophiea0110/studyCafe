@@ -18,7 +18,7 @@ public class HomeController {
 
         if(session != null) {
             String MemberId = (String) session.getAttribute("MemberId");
-            model.addAttribute("MemberId", MemberId);
+            //model.addAttribute("MemberId", MemberId);
             System.out.println(MemberId + "님 반갑습니다.");
 
         }
