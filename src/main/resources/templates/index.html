@@ -5,9 +5,13 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<link rel="stylesheet" href="css/index-style.css">
+<link rel="stylesheet" th:href="@{/css/index-style.css}" />
+<script type="text/javascript" th:src="@{/js/index.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery-3.6.0.min.js}"></script>
+
 <body>
     <div class="container-top">
+        <input type="hidden"  id="MemberId" th:value="${session.MemberId}" />
         <div th:text="${session.MemberId} + ' 님 환영합니다  '" th:if="${session.MemberId != empty}"></div>
         <a th:if="${session.MemberId != empty}" href="/members/logout">로그아웃</a>
         <a th:if="${session.MemberId == empty}" href="/members/login">로그인</a>
@@ -15,16 +19,16 @@
 
     <div class="container-mid">
         <div class="seats">
-            <div class="seat">1</div>
-            <div class="seat">2</div>
-            <div class="seat">3</div>
-            <div class="seat">4</div>
-            <div class="seat">5</div>
-            <div class="seat">6</div>
-            <div class="seat">7</div>
-            <div class="seat">8</div>
-            <div class="seat">9</div>
-            <div class="seat">10</div>
+            <div id="seat" class="seat">1</div>
+            <div id="seat" class="seat">2</div>
+            <div id="seat" class="seat">3</div>
+            <div id="seat" class="seat">4</div>
+            <div id="seat" class="seat">5</div>
+            <div id="seat" class="seat">6</div>
+            <div id="seat" class="seat">7</div>
+            <div id="seat" class="seat">8</div>
+            <div id="seat" class="seat">9</div>
+            <div id="seat" class="seat">10</div>
         </div>
         <div class="infomation">
 

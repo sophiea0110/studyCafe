@@ -33,6 +33,7 @@ public class MemberService {
 
     public boolean validateMember(Member member){
         Optional<Member> list = memberRepository.findByMember(member);
+        System.out.println("ValidateMamber MemberId = " + member.getId());
         return list.isEmpty();
     }
 }
