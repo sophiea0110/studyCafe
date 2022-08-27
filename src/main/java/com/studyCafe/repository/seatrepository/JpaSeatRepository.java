@@ -1,7 +1,8 @@
-package com.studyCafe.repository;
+package com.studyCafe.repository.seatrepository;
 
-import com.studyCafe.domain.Seat;
+import com.studyCafe.domain.seat.Seat;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 

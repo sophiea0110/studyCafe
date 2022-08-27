@@ -1,14 +1,15 @@
-package com.studyCafe.repository;
+package com.studyCafe.repository.memberrepository;
 
-import com.studyCafe.domain.Member;
+import com.studyCafe.domain.member.Member;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class JpaMemberRepository implements MemberRepository{
+public class JpaMemberRepository implements MemberRepository {
 
     private final EntityManager em;
 

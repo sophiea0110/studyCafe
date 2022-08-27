@@ -1,10 +1,10 @@
 package com.studyCafe;
 
 
-import com.studyCafe.repository.JpaMemberRepository;
-import com.studyCafe.repository.JpaSeatRepository;
-import com.studyCafe.repository.MemberRepository;
-import com.studyCafe.repository.SeatRepository;
+import com.studyCafe.repository.memberrepository.JpaMemberRepository;
+import com.studyCafe.repository.seatrepository.JpaSeatRepository;
+import com.studyCafe.repository.memberrepository.MemberRepository;
+import com.studyCafe.repository.seatrepository.SeatRepository;
 import com.studyCafe.service.MemberService;
 import com.studyCafe.service.SeatService;
 import org.springframework.beans.factory.annotation.Autowired;

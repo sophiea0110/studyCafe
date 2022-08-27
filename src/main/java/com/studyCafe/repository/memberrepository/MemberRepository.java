@@ -1,6 +1,6 @@
-package com.studyCafe.repository;
+package com.studyCafe.repository.memberrepository;
 
-import com.studyCafe.domain.Member;
+import com.studyCafe.domain.member.Member;
 
 import java.util.Optional;
 

@@ -1,13 +1,13 @@
 package com.studyCafe.service;
 
-import com.studyCafe.domain.Member;
-import com.studyCafe.repository.MemberRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.studyCafe.domain.member.Member;
+import com.studyCafe.repository.memberrepository.MemberRepository;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 
+@Transactional("transactionManager")
 public class MemberService {
 
     private final MemberRepository memberRepository;

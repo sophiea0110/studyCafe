@@ -1,13 +1,11 @@
-package com.studyCafe.domain;
-
-import org.springframework.context.annotation.Primary;
+package com.studyCafe.domain.member;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "Member")
 public class Member {
-
     @Id
+    @GeneratedValue
     private String id;
     private String pw;
 

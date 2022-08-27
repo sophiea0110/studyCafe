@@ -1,12 +1,11 @@
-package com.studyCafe.domain;
+package com.studyCafe.domain.seat;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-@Entity
+@Entity(name = "Seat")
 public class Seat {
     @Id
+    @GeneratedValue
     private String memberId;
     private Long seatNumber;
 

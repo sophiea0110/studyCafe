@@ -39,7 +39,7 @@ public class DBconfig {
         propertiesHashMap.put("hibernate.ejb.naming_strategy",DEFAULT_NAMING_STRATEGY);
 
         return builder.dataSource(memberDataSource())
-                .packages("com.studyCafe.domain.Member")
+                .packages("com.studyCafe.domain.member")
                 .properties(propertiesHashMap)
                 .build();
     }
@@ -53,7 +53,7 @@ public class DBconfig {
 
     @Configuration
     @EnableJpaRepositories(
-            basePackages="com.studyCafe.repository",
+            basePackages="com.studyCafe.repository.memberrepository",
             entityManagerFactoryRef = "entityManagerFactory",
             transactionManagerRef = "transactionManager")
     static class DbArticleJpaRepositoriesConfig {
@@ -70,7 +70,7 @@ public class DBconfig {
             EntityManagerFactoryBuilder builder) {
 
         return builder.dataSource(userDataSource())
-                .packages("com.studyCafe.domain.Seat")
+                .packages("com.studyCafe.domain.seat")
                 .build();
     }
 
@@ -83,7 +83,7 @@ public class DBconfig {
 
     @Configuration
     @EnableJpaRepositories(
-            basePackages="com.studyCafe.repository",
+            basePackages="com.studyCafe.repository.seatrepository",
             entityManagerFactoryRef = "entityManagerFactorySeat",
             transactionManagerRef = "transactionManagerSeat")
     static class DbUserJpaRepositoriesConfig {
