@@ -14,19 +14,22 @@ function seatAssign(e, MemberId){
     console.log(MemberId)
 
     var result = confirm(e.textContent + "번 자리를 선택하시겠습니까?")
+    console.log(MemberId.length == 0)
 
     if(result){
-        $.ajax({
-            type: "post",
-            url: "seats/new",
-            data: {"MemberId" : MemberId, "seatNumber" : e.textContent},
-            success : function(){
-                console.log('통신 성공');
-            },
-            error: function(){
-                console.log('통신 에러');
-            }
-        })
+        if(MemberId.length != 0)
+            $.ajax({
+                type: "post",
+                url: "seats/new",
+                data: {"MemberId" : MemberId, "seatNumber" : e.textContent},
+                success : function(){
+                    console.log('통신 성공');
+                },
+                error: function(){
+                    console.log('통신 에러');
+                }
+            })
+        else alert("로그인을 해주세요!")
     }else return
 }
 

@@ -4,7 +4,6 @@ import com.studyCafe.domain.Seat;
 import com.studyCafe.repository.SeatRepository;
 import org.springframework.transaction.annotation.Transactional;
 
-@Transactional
 public class SeatService {
 
     private final SeatRepository seatRepository;
