@@ -1,8 +1,7 @@
-package com.studyCafe.repository.memberrepository;
+package com.studyCafe.repository;
 
-import com.studyCafe.domain.member.Member;
+import com.studyCafe.domain.Member;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -36,6 +35,15 @@ public class JpaMemberRepository implements MemberRepository {
         List<Member> result = em.createQuery("select m from Member m where m.id = :id and m.pw = :pw", Member.class)
                 .setParameter("id", member.getId())
                 .setParameter("pw", member.getPw())
+                .getResultList();
+        return result.stream().findAny();
+    }
+
+    @Override
+    public Optional<Member> seatSave(Long seatNumber, String id) {
+        List<Member> result = em.createQuery("UPDATE Member m SET m.seatNumber = :seatNumber where m.id = :id", Member.class)
+                .setParameter("seatNumber", seatNumber)
+                .setParameter("id", id)
                 .getResultList();
         return result.stream().findAny();
     }

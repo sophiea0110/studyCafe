@@ -1,13 +1,12 @@
 package com.studyCafe.service;
 
-import com.studyCafe.domain.member.Member;
-import com.studyCafe.repository.memberrepository.MemberRepository;
-import org.springframework.stereotype.Service;
+import com.studyCafe.domain.Member;
+import com.studyCafe.repository.MemberRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-@Transactional("transactionManager")
+@Transactional
 public class MemberService {
 
     private final MemberRepository memberRepository;
@@ -34,5 +33,9 @@ public class MemberService {
         Optional<Member> list = memberRepository.findByMember(member);
         System.out.println("ValidateMamber MemberId = " + member.getId());
         return list.isEmpty();
+    }
+
+    public void seatSelect(Long seatNumber, String id){
+        memberRepository.seatSave(seatNumber, id);
     }
 }

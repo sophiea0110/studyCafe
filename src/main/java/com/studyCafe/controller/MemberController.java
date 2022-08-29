@@ -1,7 +1,7 @@
 package com.studyCafe.controller;
 
 
-import com.studyCafe.domain.member.Member;
+import com.studyCafe.domain.Member;
 import com.studyCafe.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -61,5 +61,6 @@ public class MemberController {
         memberService.join(member);
         return "/members/login";
     }
+
 
 }

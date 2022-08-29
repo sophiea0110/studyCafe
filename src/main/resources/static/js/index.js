@@ -20,8 +20,8 @@ function seatAssign(e, MemberId){
         if(MemberId.length != 0)
             $.ajax({
                 type: "post",
-                url: "seats/new",
-                data: {"MemberId" : MemberId, "seatNumber" : e.textContent},
+                url: "seat/choice",
+                data: {"id" : MemberId, "seatNumber" : e.textContent},
                 success : function(){
                     console.log('통신 성공');
                 },

@@ -1,14 +1,22 @@
-package com.studyCafe.domain.member;
+package com.studyCafe.domain;
 
 import javax.persistence.*;
 
-@Entity(name = "Member")
+@Entity
 public class Member {
     @Id
-    @GeneratedValue
     private String id;
     private String pw;
+    @Column(name="SEATNUMBER")
+    private long seatNumber;
 
+    public long getSeatNumber() {
+        return seatNumber;
+    }
+
+    public void setSeatNumber(long seatNumber) {
+        this.seatNumber = seatNumber;
+    }
 
     public String getId() {
         return id;
