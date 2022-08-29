@@ -4,13 +4,16 @@ import com.studyCafe.domain.Member;
 import com.studyCafe.service.MemberService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class SeatController {
 
     private MemberService memberService;
+
+    public SeatController(MemberService memberService) {
+        this.memberService = memberService;
+    }
 
     @PostMapping(value = "seat/choice")
     @ResponseBody

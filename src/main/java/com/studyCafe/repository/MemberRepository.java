@@ -9,5 +9,5 @@ public interface MemberRepository {
     public Optional<Member> findById(String name);
     public Optional<Member> findByMember(Member member);
 
-    public Optional<Member> seatSave(Long seatNumber, String id);
+    public void seatSave(Long seatNumber, String id);
 }
