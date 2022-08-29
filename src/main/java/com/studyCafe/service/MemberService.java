@@ -35,7 +35,7 @@ public class MemberService {
         return list.isEmpty();
     }
 
-    public void seatSelect(Long seatNumber, String id){
-        memberRepository.seatSave(seatNumber, id);
+    public void seatSelect(Member member){
+        memberRepository.seatSave(member);
     }
 }

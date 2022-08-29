@@ -21,7 +21,7 @@ public class SeatController {
 
         System.out.println("choice id : " + member.getId());
         System.out.println("choice seatNumber : " + member.getSeatNumber());
-        memberService.seatSelect(member.getSeatNumber(), member.getId());
+        memberService.seatSelect(member);
 
     }
     @PostMapping(value = "seat/recover")

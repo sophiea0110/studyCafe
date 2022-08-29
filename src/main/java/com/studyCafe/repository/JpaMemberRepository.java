@@ -42,10 +42,10 @@ public class JpaMemberRepository implements MemberRepository {
     }
 
     @Override
-    public void seatSave(Long seatNumber, String id) {
+    public void seatSave(Member member) {
         int result = em.createQuery("UPDATE Member m SET m.seatNumber = :seatNumber where m.id = :id")
-                .setParameter("seatNumber", seatNumber)
-                .setParameter("id", id)
+                .setParameter("seatNumber", member.getSeatNumber())
+                .setParameter("id", member.getId())
                 .executeUpdate();
     }
 }
