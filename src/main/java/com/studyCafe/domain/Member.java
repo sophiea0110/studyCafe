@@ -9,7 +9,7 @@ public class Member {
     private String pw;
     @Column(name="SEATNUMBER")
     private long seatNumber;
-
+    //테스트중
     public long getSeatNumber() {
         return seatNumber;
     }
