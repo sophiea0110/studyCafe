@@ -35,7 +35,11 @@ public class MemberService {
         return list.isEmpty();
     }
 
-    public void seatSelect(Member member){
-        memberRepository.seatSave(member);
+    public int assignSeat(Member member){
+        return memberRepository.updateBySeatNumber(member);
+    }
+
+    public int returnSeat(Member member){
+        return memberRepository.initBySeatNumber(member);
     }
 }

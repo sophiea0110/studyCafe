@@ -17,16 +17,18 @@ public class SeatController {
 
     @PostMapping(value = "seat/choice")
     @ResponseBody
-    public void SeatChoice(Member member){
+    public int SeatChoice(Member member){
 
-        System.out.println("choice id : " + member.getId());
-        System.out.println("choice seatNumber : " + member.getSeatNumber());
-        memberService.seatSelect(member);
-
+        //System.out.println("SeatChoice id : " + member.getId());
+        //System.out.println("SeatChoice seatNumber : " + member.getSeatNumber());
+        return memberService.assignSeat(member);
     }
     @PostMapping(value = "seat/recover")
     @ResponseBody
-    public void SeatRecover(){
+    public int SeatRecover(Member member){
 
+        //System.out.println("SeatRecover id : " + member.getId());
+        //System.out.println("SeatRecover seatNumber : " + member.getSeatNumber());
+        return memberService.returnSeat(member);
     }
 }
