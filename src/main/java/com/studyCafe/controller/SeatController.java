@@ -3,7 +3,9 @@ package com.studyCafe.controller;
 import com.studyCafe.domain.Member;
 import com.studyCafe.service.MemberService;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -15,7 +17,7 @@ public class SeatController {
         this.memberService = memberService;
     }
 
-    @PostMapping(value = "seat/choice")
+    @PostMapping(value = "seat/select")
     @ResponseBody
     public int SeatChoice(Member member){
 
@@ -30,5 +32,13 @@ public class SeatController {
         //System.out.println("SeatRecover id : " + member.getId());
         //System.out.println("SeatRecover seatNumber : " + member.getSeatNumber());
         return memberService.returnSeat(member);
+
+    }
+
+    @GetMapping(value = "seat/findSeat")
+    @ResponseBody
+    public  String FindSeat(@RequestParam String MemberId){
+        System.out.println("FindSeat MemberId = " + MemberId);
+        return "findSeat 정상적으로 실행되었습니다.";
     }
 }
