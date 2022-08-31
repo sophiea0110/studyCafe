@@ -41,19 +41,4 @@ public class JpaMemberRepository implements MemberRepository {
         return result.stream().findAny();
     }
 
-    @Override
-    public int updateBySeatNumber(Member member) {
-        return em.createQuery("UPDATE Member m SET m.seatNumber = :seatNumber where m.id = :id")
-                .setParameter("seatNumber", member.getSeatNumber())
-                .setParameter("id", member.getId())
-                .executeUpdate();
-    }
-
-    @Override
-    public int initBySeatNumber(Member member) {
-        return em.createQuery("UPDATE Member m SET m.seatNumber = 0 where m.id = :id")
-                .setParameter("id", member.getId())
-                .executeUpdate();
-    }
-
 }

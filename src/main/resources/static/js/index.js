@@ -14,6 +14,7 @@ window.addEventListener("load", function(event) {
 // user 로그인 상태 및 user 이미 다른 좌석이 있는지 학인 (findMeberSeat)
 // selectMemberSeat -> findMeberSeat -> selectMemberSeat
 function findMeberSeat(MemberId){
+    let result;
     $.ajax({
         type: "GET",
          url: "seat/findSeat",
@@ -25,6 +26,7 @@ function findMeberSeat(MemberId){
             console.log('통신 에러');
          }
     })
+    return result;
     // user의 이미 좌석이 있으면 해당 좌석 번호을 가져온다.
     // 0 아닌 1~10까지 숫자
     // 리턴으로 True or False 반환
@@ -34,8 +36,8 @@ function selectMemberSeat(e, MemberId){
     console.log("선택한 좌석 : " + e.textContent)
     console.log(MemberId)
 
-    findMeberSeat(MemberId);
-
+    const result = findMeberSeat(MemberId);
+    console.log(result)
     if(true){
         if(MemberId.length != 0)
             $.ajax({
@@ -50,8 +52,7 @@ function selectMemberSeat(e, MemberId){
                     console.log('통신 에러');
                 }
             })
-        else alert("로그인을 해주세요!")
-    }else return
+    }
 }
 
 function recoverSeat(e, MemberId){

@@ -34,12 +34,4 @@ public class MemberService {
         System.out.println("ValidateMamber MemberId = " + member.getId());
         return list.isEmpty();
     }
-
-    public int assignSeat(Member member){
-        return memberRepository.updateBySeatNumber(member);
-    }
-
-    public int returnSeat(Member member){
-        return memberRepository.initBySeatNumber(member);
-    }
 }
