@@ -31,13 +31,24 @@ public class JpaSeatRepository implements SeatRepository{
     }
 
     @Override
+    public List<Member> AllSeat() {
+        List<Member> result = em.createQuery("select m from Member m", Member.class)
+                .getResultList();
+
+        result.stream().forEach(e ->  {
+            System.out.println(e.getSeatNumber() + "번의 사용자는 " + e.getId());
+        });
+
+        return result;
+    }
+
+    @Override
     public int searchSeat(String MemberId) {
         Object obj = em.createQuery("select seatNumber from Member m where m.id = :id")
                 .setParameter("id", MemberId)
                 .getSingleResult()
                 .toString();
         int result = Integer.parseInt((String)obj);
-        System.out.println("사용중인 좌석 = " + result);
         return result;
     }
 }

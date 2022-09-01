@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+import java.util.Optional;
+
 @Controller
 public class SeatController {
 
@@ -16,6 +19,12 @@ public class SeatController {
 
     public SeatController(SeatService seatService) {
         this.seatService = seatService;
+    }
+
+    @GetMapping(value = "seat/AllfindSeat")
+    @ResponseBody
+    public List<Member> AllfindSeat(){
+        return seatService.AllcurrentSeat();
     }
 
     @GetMapping(value = "seat/findSeat")

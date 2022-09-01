@@ -5,6 +5,9 @@ import com.studyCafe.repository.MemberRepository;
 import com.studyCafe.repository.SeatRepository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.Optional;
+
 @Transactional
 public class SeatService {
 
@@ -13,6 +16,8 @@ public class SeatService {
     public SeatService(SeatRepository seatRepository) {
         this.seatRepository = seatRepository;
     }
+
+    public List<Member> AllcurrentSeat() { return seatRepository.AllSeat(); }
 
     public int findSeat(String MemberId) { return seatRepository.searchSeat(MemberId); }
 
