@@ -11,9 +11,27 @@ window.addEventListener("load", function(event) {
     let seats = document.querySelectorAll("#seat")
 
     let seatByState = allStateSeat()
+    /*
+        1 : {
+                id : 'aaa',
+                pw : '111',
+                seatNumber : 1
+            }
+    */
 
+    seats.forEach( seat => {
+        seatByState.forEach( s => {
+            if(seat.textContent == s.seatNumber){
+               seat.style.backgroundColor="red";
+            }else{
+               seat.style.backgroundColor="green";
+            }
+        })
+    })
+
+    /*
     seats.forEach( e => {
-        if(e.seatNmuber != 0){
+        if(e.textContent == seatByState){
             e.style.backgroundColor="red";
             e.addEventListener("click", () => {
                     selectMemberSeat(e, MemberId)
@@ -25,6 +43,8 @@ window.addEventListener("load", function(event) {
                   })
         }
     })
+    */
+
     /*
     let addEventSeats = seats.forEach( e => {
       e.addEventListener("click", () => {
