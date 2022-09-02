@@ -7,9 +7,7 @@
 // 좌석 DIV태그 value가 없고 로그인된 상태이면 좌석 선택
 window.addEventListener("load", function(event) {
     let MemberId = document.getElementById("MemberId");
-
     let seats = document.querySelectorAll("#seat")
-
     let seatByState = allStateSeat()
     /*
         1 : {
@@ -19,37 +17,23 @@ window.addEventListener("load", function(event) {
             }
     */
 
-    seats.forEach( seat => {
-        seatByState.forEach( s => {
-            if(seat.textContent == s.seatNumber){
-               seat.style.backgroundColor="red";
-            }else{
-               seat.style.backgroundColor="green";
-            }
+    seats.forEach(seat => {
+        seatByState.forEach(state => {
+                console.log(seat)
         })
     })
 
     /*
-    seats.forEach( e => {
-        if(e.textContent == seatByState){
-            e.style.backgroundColor="red";
-            e.addEventListener("click", () => {
-                    selectMemberSeat(e, MemberId)
-                  })
-        }else{
-            e.style.backgroundColor="green";
-            e.addEventListener("click", () => {
-                    recoverSeat(e, MemberId)
-                  })
-        }
-    })
-    */
-
-    /*
-    let addEventSeats = seats.forEach( e => {
-      e.addEventListener("click", () => {
-        selectMemberSeat(e, MemberId)
-      })
+    seats.forEach( seat => {
+        seatByState.forEach( s => {
+            if(seat.textContent == s.seatNumber){
+               console.log(seat.textContent)
+               //seat.style.backgroundColor="red";
+            }else{
+                console.log(seat.textContent)
+               //seat.style.backgroundColor="green";
+            }
+        })
     })
     */
 })
