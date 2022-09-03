@@ -16,26 +16,31 @@ window.addEventListener("load", function(event) {
                 seatNumber : 1
             }
     */
+    let arr = [];
+    let b = [];
 
-    seats.forEach(seat => {
-        seatByState.forEach(state => {
-                console.log(seat)
-        })
-    })
-
-    /*
     seats.forEach( seat => {
-        seatByState.forEach( s => {
-            if(seat.textContent == s.seatNumber){
-               console.log(seat.textContent)
-               //seat.style.backgroundColor="red";
-            }else{
-                console.log(seat.textContent)
-               //seat.style.backgroundColor="green";
-            }
-        })
+        arr.push(parseInt(seat.textContent))
     })
-    */
+
+    seatByState.forEach( state => {
+        b.push(state.seatNumber)
+    })
+
+    let SeatA = arr.filter( a => b.includes(a))
+    let SeatB = arr.filter( a => !b.includes(a))
+    // 1, 2, 3, 4, 5
+    SeatA.forEach( a => {
+        seat[a-1].style.backgroundColor = "red"
+    })
+    // 6, 7, 8, 9, 10
+    SeatB.forEach( b => {
+        seats[b-1].style.backgroundColor = "green"
+    })
+
+
+
+
 })
 
 // user 좌석 선택시 (selectMemberSeat)
