@@ -8,7 +8,9 @@
 window.addEventListener("load", function(event) {
     let MemberId = document.getElementById("MemberId");
     let seats = document.querySelectorAll("#seat")
-    let seatByState = allStateSeat()
+    let seatByState = allStateSeat().filter( f => f.seatNumber != 0)
+
+    console.log(seatByState)
     /*
         1 : {
                 id : 'aaa',
@@ -16,31 +18,7 @@ window.addEventListener("load", function(event) {
                 seatNumber : 1
             }
     */
-    let arr = [];
-    let b = [];
-
-    seats.forEach( seat => {
-        arr.push(parseInt(seat.textContent))
-    })
-
-    seatByState.forEach( state => {
-        b.push(state.seatNumber)
-    })
-
-    let SeatA = arr.filter( a => b.includes(a))
-    let SeatB = arr.filter( a => !b.includes(a))
-    // 1, 2, 3, 4, 5
-    SeatA.forEach( a => {
-        seat[a-1].style.backgroundColor = "red"
-    })
-    // 6, 7, 8, 9, 10
-    SeatB.forEach( b => {
-        seats[b-1].style.backgroundColor = "green"
-    })
-
-
-
-
+    addEventSeat(seats, seatByState, MemberId)
 })
 
 // user 좌석 선택시 (selectMemberSeat)
@@ -52,8 +30,11 @@ function selectMemberSeat(e, MemberId){
     const aleadyUseSeat = findMeberSeat(MemberId);
     //로그인 상태 if(MemberId.length != 0)
     //이미 다른 좌석이 있는지 확인 if(aleadyUseSeat != 0)
-    if(MemberId.length != 0){
-        if(aleadyUseSeat == 0){
+    console.log(MemberId)
+    console.log(MemberId.value.length == 0)
+    if(MemberId.value.length != 0){
+            let check = confirm(e.textContent + " 번 좌석을 선택 하시겠습니까?")
+        if(aleadyUseSeat == 0 & check != 0){
             $.ajax({
                 type: "post",
                 url: "seat/select",
@@ -96,7 +77,17 @@ function findMeberSeat(MemberId){
 //
 function recoverSeat(e, MemberId){
 
-    let check = confirm(e.textContent + " 번 좌석을 반납하시겠습니까?")
+    //console.log($(e).attr('value') == MemberId.value)
+    //console.log(typeof $(e).attr('value'))
+    //console.log(typeof MemberId.value)
+
+    let check
+
+    if($(e).attr('value') == MemberId.value){
+        check = confirm(e.textContent + " 번 좌석을 반납하시겠습니까?")
+    }else{
+        return
+    }
 
     if(check){
         $.ajax({
@@ -124,8 +115,7 @@ function allStateSeat(){
             url: "seat/AllfindSeat",
             async: false,
             success : function(data){
-                console.log(data)
-                result = data
+                result = data.filter( f => f.seatNumber != 0)
                 console.log('통신 성공');
             },
             error: function(){
@@ -134,6 +124,57 @@ function allStateSeat(){
     })
 
     return result
+}
+
+function addEventSeat(seats, seatByState, MemberId){
+
+   let arrSeat = [];
+   let arrState = [];
+
+    seats.forEach( seat => {
+        arrSeat.push(parseInt(seat.textContent))
+    })
+
+    seatByState.forEach( state => {
+        arrState.push(state.seatNumber)
+    })
+
+    let SeatA = arrSeat.filter( value => arrState.includes(value))
+    // 사용중인 좌석
+    let SeatB = arrSeat.filter( value => !arrState.includes(value))
+    // 사용중이지 않은 좌석
+    console.log(SeatA)
+    console.log(SeatB)
+
+    //let t = seatByState.filter( f => f.seatNumber == seat[a-1].textContent)
+
+    //console.log(t)
+
+    // 사용중인 좌석
+    // [1, 2, 3, 4, 5, 9]
+    SeatA.forEach( a => {
+        seats[a-1].style.backgroundColor = "red"
+
+        let t = seatByState.filter( f => f.seatNumber == seat[a-1].textContent)
+
+        console.log(t[0].seatNumber)
+
+        $(seats[a-1]).attr("value",t[0].id)
+        console.log(seat[a-1])
+        seats[a-1].addEventListener("click", () => {
+            recoverSeat(seats[a-1], MemberId)
+        })
+    })
+
+    // 사용중이지 않은 좌석
+    // [6, 7, 8, 10]
+    SeatB.forEach( b => {
+        seats[b-1].style.backgroundColor = "green"
+        seats[b-1].addEventListener("click", () => {
+                    selectMemberSeat(seats[b-1], MemberId)
+                })
+    })
+
 }
 
 
