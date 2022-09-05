@@ -19,6 +19,7 @@ window.addEventListener("load", function(event) {
             }
     */
     addEventSeat(seats, seatByState, MemberId)
+    seatBoard(seats, seatByState, MemberId)
 })
 
 // user 좌석 선택시 (selectMemberSeat)
@@ -33,7 +34,7 @@ function selectMemberSeat(e, MemberId){
     console.log(MemberId)
     console.log(MemberId.value.length == 0)
     if(MemberId.value.length != 0){
-            let check = confirm(e.textContent + " 번 좌석을 선택 하시겠습니까?")
+        let check = confirm(e.textContent + " 번 좌석을 선택 하시겠습니까?")
         if(aleadyUseSeat == 0 & check != 0){
             $.ajax({
                 type: "post",
@@ -172,10 +173,43 @@ function addEventSeat(seats, seatByState, MemberId){
         seats[b-1].style.backgroundColor = "green"
         seats[b-1].addEventListener("click", () => {
                     selectMemberSeat(seats[b-1], MemberId)
-                })
+        })
     })
 
 }
 
+function seatBoard(seats, seatByState, MemberId){
+
+   let arrSeat = [];
+   let arrState = [];
+
+   userseatNumber = findMeberSeat(MemberId)
+
+    seats.forEach( seat => {
+        arrSeat.push(parseInt(seat.textContent))
+    })
+
+    seatByState.forEach( state => {
+        arrState.push(state.seatNumber)
+    })
+
+    let SeatA = arrSeat.filter( value => arrState.includes(value))
+    // 사용중인 좌석
+    let SeatB = arrSeat.filter( value => !arrState.includes(value))
+    // 사용중이지 않은 좌석
+    console.log(SeatA)
+    console.log(SeatB)
+
+    if(MemberId.value.length != 0 & userseatNumber != 0){
+        userSeat = document.getElementById("userseat")
+        userSeat.textContent = MemberId.value + " 님의 사용중인 좌석은 " + userseatNumber + " 번 입니다."
+    }
+
+    useboard = document.getElementById("useseat")
+    useboard.textContent = "현재 사용중인 좌석 : " + SeatA.length
+
+    notuseboard = document.getElementById("notuseSeat")
+    notuseboard.textContent = "현재 사용 가능한 좌석 : " + SeatB.length
+}
 
 

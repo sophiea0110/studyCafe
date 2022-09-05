@@ -38,7 +38,7 @@
     display: flex;
     border: 1px solid black;
 
-    width: 100%;
+    width: 120%;
     height: 500px;
 
     align-items: center;
@@ -68,7 +68,7 @@
 
     border: 1px solid black;
 
-    width: 100%;
+    width: 50%;
     height: 500px;
 
 }
