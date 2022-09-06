@@ -44,11 +44,13 @@ public class JpaSeatRepository implements SeatRepository{
 
     @Override
     public int searchSeat(String MemberId) {
+        System.out.println(MemberId);
         Object obj = em.createQuery("select seatNumber from Member m where m.id = :id")
                 .setParameter("id", MemberId)
                 .getSingleResult()
                 .toString();
         int result = Integer.parseInt((String)obj);
+        System.out.println(result);
         return result;
     }
 }

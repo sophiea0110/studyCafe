@@ -5,11 +5,15 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<script type="text/javascript" th:src="@{/js/join.js}"></script>
 <link rel="stylesheet" th:href="@{/css/join-style.css}" />
 <body>
 <div class="join-page">
     <form class="join-form" action="/members/new" method="post">
-        <input class="join-item" type="text" name="id">
+        <div>
+            <input class="join-item" type="text" id="id" name="id">
+            <input class="join-item" type="button" id="idcheck" value="중복체크">
+        </div>
         <input class="join-item" type="password" name="pw">
         <button class="join-item"type="submit">확인</button>
     </form>
