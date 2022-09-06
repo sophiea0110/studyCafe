@@ -9,6 +9,7 @@ window.addEventListener("load", function(event) {
     let MemberId = document.getElementById("MemberId");
     let seats = document.querySelectorAll("#seat")
     let seatByState = allStateSeat().filter( f => f.seatNumber != 0)
+    // DB에 저장된 현재 사용중인 전좌석 정보를 가져온다
 
     console.log(seatByState)
     /*
@@ -25,24 +26,20 @@ window.addEventListener("load", function(event) {
 // user 좌석 선택시 (selectMemberSeat)
 // user 로그인 상태 및 user 이미 다른 좌석이 있는지 학인 (findMeberSeat)
 // selectMemberSeat -> findMeberSeat -> selectMemberSeat
+// DB에 MemberId와 선택한 좌석번호를 저장
+// 해당 좌석 번호 태그에 value에 사용자ID 와 사용중(빨간색) 표시
 function selectMemberSeat(e, MemberId){
-    console.log("선택한 좌석 : " + e.textContent)
 
-    let aleadyUseSeat
-
+    //1. 로그인 상태 확인
+    //2. 로그인 되었을 경우 MemberId를 통해 사용자의 ID가 사용중인 좌석있는지 조회
+    //   있을시 사용자가 사용중인 좌석 번호를 없을시 0으로 aleadyUseSeat에 저장
+    //3. aleadyUseSeat가 0이고 메세지 박스에서 확인 눌렀을경우
+    //   DB에 MemberId와 좌석번호를 저장
+    //4. aleadyUseSeat가 0이 아닌 다른 번호가 있을시 사용자가 사용중인 좌석 번호 출력
     if(MemberId.value.length != 0){
-        aleadyUseSeat = findMeberSeat(MemberId);
-    }else {
-        aleadyUseSeat = 0
-    }
-    console.log(e.value == undefined)
-    //로그인 상태 if(MemberId.length != 0)
-    //이미 다른 좌석이 있는지 확인 if(aleadyUseSeat != 0)
-    console.log(MemberId)
-    console.log(MemberId.value.length == 0)
-    if(MemberId.value.length != 0){
+        let aleadyUseSeat = findMeberSeat(MemberId)
         let check = confirm(e.textContent + " 번 좌석을 선택 하시겠습니까?")
-        if(aleadyUseSeat == 0 & check != 0){
+        if(aleadyUseSeat == 0 & check == true){
             $.ajax({
                 type: "post",
                 url: "seat/select",
@@ -59,7 +56,7 @@ function selectMemberSeat(e, MemberId){
     }   else   alert("로그인 상태를 확인하세요!");
 }
 
-// user의 이미 좌석이 있으면 해당 좌석 번호을 가져온다.
+// 사용자가 이미 좌석이 있으면 해당 좌석 번호을 가져온다.
 // 리턴으로 0 아닌 1~10까지 숫자
 function findMeberSeat(MemberId){
     let result;
@@ -71,7 +68,6 @@ function findMeberSeat(MemberId){
          success : function(data){
             result = data
             console.log('통신 성공');
-
          },
          error: function(){
             console.log('통신 에러');
@@ -85,32 +81,23 @@ function findMeberSeat(MemberId){
 //
 function recoverSeat(e, MemberId){
 
-    //console.log($(e).attr('value') == MemberId.value)
-    //console.log(typeof $(e).attr('value'))
-    //console.log(typeof MemberId.value)
-
-    let check
-
-    if($(e).attr('value') == MemberId.value){
-        check = confirm(e.textContent + " 번 좌석을 반납하시겠습니까?")
-    }else{
-        return
-    }
-
-    if(check){
-        $.ajax({
-            type: "post",
-            url: "seat/recover",
-            data: {"id" : MemberId.value, "seatNumber" : e.textContent},
-            success : function(data){
-                console.log(data)
-                console.log('통신 성공');
-            },
-            error: function(){
-                console.log('통신 에러');
-            }
-        })
-    }
+    if(MemberId.value.length != 0){
+        let check = confirm(e.textContent + " 번 좌석을 반납하시겠습니까?")
+        if($(e).attr('value') == MemberId.value & check == true){
+            $.ajax({
+                type: "post",
+                url: "seat/recover",
+                data: {"id" : MemberId.value, "seatNumber" : e.textContent},
+                success : function(data){
+                    console.log(data)
+                    console.log('통신 성공');
+                },
+                error: function(){
+                    console.log('통신 에러');
+                }
+            })
+        }   alert("권한이 없습니다!");
+    } else  alert("로그인 상태를 확인하세요!");
 }
 
 // 서버 단에서 객체로 받아 반환
