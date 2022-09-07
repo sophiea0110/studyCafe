@@ -23,7 +23,7 @@ window.addEventListener("load", function(event) {
     seatBoard(seats, seatByState, MemberId)
 })
 
-// user 좌석 선택시 (selectMemberSeat)
+// 좌석 선택(selectMemberSeat)
 // user 로그인 상태 및 user 이미 다른 좌석이 있는지 학인 (findMeberSeat)
 // selectMemberSeat -> findMeberSeat -> selectMemberSeat
 // DB에 MemberId와 선택한 좌석번호를 저장
@@ -57,7 +57,7 @@ function selectMemberSeat(e, MemberId){
 }
 
 // 사용자가 이미 좌석이 있으면 해당 좌석 번호을 가져온다.
-// 리턴으로 0 아닌 1~10까지 숫자
+// 0 아닌 1~10까지 숫자를 반환
 function findMeberSeat(MemberId){
     let result;
     $.ajax({
@@ -76,9 +76,11 @@ function findMeberSeat(MemberId){
     return result;
 }
 
-//
-//
-//
+// 좌석 반납(recoverSeat)
+// 해당 좌석 태그와 접속 중인 사용자ID를 받는다
+// 1. 사용자가 로그인을 했는지 확인
+// 2. 해당 좌석 태그 value와 로그인한 사용자 ID가 일치여부 확인과 메시지 박스 확인을 했는지 확인
+// 3. MemberId와 사용자가 사용중인 좌석번호를 DB에 넘겨 좌석번호를 0으로 수정한다.
 function recoverSeat(e, MemberId){
 
     if(MemberId.value.length != 0){
@@ -96,11 +98,11 @@ function recoverSeat(e, MemberId){
                     console.log('통신 에러');
                 }
             })
-        }   alert("권한이 없습니다!");
+        }else   alert("권한이 없습니다!");
     } else  alert("로그인 상태를 확인하세요!");
 }
 
-// 서버 단에서 객체로 받아 반환
+// DB에 저장된 현재 사용중인 전좌석 정보를 가져온다
 function allStateSeat(){
 
     let result;
@@ -121,6 +123,10 @@ function allStateSeat(){
     return result
 }
 
+
+// 좌석에 이벤트 추가
+// 사용중인 좌석 태그에 value값에 해당 좌석에 사용중인 사용자ID를 입력후 해당 태그 클릭시 반납 이벤트 추가
+// 사용중이지 않은 좌석 태그 클릭시 선택 이벤트 추가
 function addEventSeat(seats, seatByState, MemberId){
 
    let arrSeat = [];
@@ -138,15 +144,8 @@ function addEventSeat(seats, seatByState, MemberId){
     // 사용중인 좌석
     let SeatB = arrSeat.filter( value => !arrState.includes(value))
     // 사용중이지 않은 좌석
-    console.log(SeatA)
-    console.log(SeatB)
 
-    //let t = seatByState.filter( f => f.seatNumber == seat[a-1].textContent)
-
-    //console.log(t)
-
-    // 사용중인 좌석
-    // [1, 2, 3, 4, 5, 9]
+    // 사용중인 좌석 태그에 색 변경 및 클릭시 좌석 반납 이벤트 추가
     SeatA.forEach( a => {
         seats[a-1].style.backgroundColor = "red"
 
@@ -161,8 +160,7 @@ function addEventSeat(seats, seatByState, MemberId){
         })
     })
 
-    // 사용중이지 않은 좌석
-    // [6, 7, 8, 10]
+    // 사용중이지 않은 좌석 태그에 색 변경 및 클릭시 좌석 선택 이벤트 추가
     SeatB.forEach( b => {
         seats[b-1].style.backgroundColor = "green"
         seats[b-1].addEventListener("click", () => {
@@ -172,6 +170,8 @@ function addEventSeat(seats, seatByState, MemberId){
 
 }
 
+// 홈페이지 로드시 좌석 현황 출력
+// 로그인시 사용자가 사용중인 좌석 출력
 function seatBoard(seats, seatByState, MemberId){
 
    let arrSeat = [];
@@ -196,8 +196,6 @@ function seatBoard(seats, seatByState, MemberId){
     // 사용중인 좌석
     let SeatB = arrSeat.filter( value => !arrState.includes(value))
     // 사용중이지 않은 좌석
-    console.log(SeatA)
-    console.log(SeatB)
 
     if(MemberId.value.length != 0 & userseatNumber != 0){
         userSeat = document.getElementById("userseat")
