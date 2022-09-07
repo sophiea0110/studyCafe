@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Optional;
 
 @Controller
 public class MemberController {
@@ -60,6 +62,13 @@ public class MemberController {
     public String create(Member member){
         memberService.join(member);
         return "/members/login";
+    }
+
+    @GetMapping(value = "members/idCheck")
+    @ResponseBody
+    public Optional<Member> idCheck(Member member){
+        System.out.println(member.getId());
+        return memberService.validateDuplicateMember(member);
     }
 
 

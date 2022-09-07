@@ -18,15 +18,11 @@ public class MemberService {
 
 
     public Member join(Member member){
-        validateDuplicateMember(member);
         return memberRepository.save(member);
     }
 
-    private void validateDuplicateMember(Member member) {
-        memberRepository.findById(member.getId())
-                .ifPresent(m -> {
-                    throw new IllegalStateException("이미 존재하는 회원입니다.");
-                });
+    public Optional<Member> validateDuplicateMember(Member member) {
+        return memberRepository.findById(member.getId());
     }
 
     public boolean validateMember(Member member){

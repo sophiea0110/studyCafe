@@ -7,12 +7,13 @@
 </head>
 <script type="text/javascript" th:src="@{/js/join.js}"></script>
 <link rel="stylesheet" th:href="@{/css/join-style.css}" />
+<script type="text/javascript" th:src="@{/js/jquery-3.6.0.min.js}"></script>
 <body>
 <div class="join-page">
     <form class="join-form" action="/members/new" method="post">
         <div>
             <input class="join-item" type="text" id="id" name="id">
-            <input class="join-item" type="button" id="idcheck" value="중복체크">
+            <input class="join-item" type="text" id="idcheck" style="display:none">
         </div>
         <input class="join-item" type="password" name="pw">
         <button class="join-item"type="submit">확인</button>
