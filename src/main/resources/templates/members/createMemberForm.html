@@ -11,11 +11,12 @@
 <body>
 <div class="join-page">
     <form class="join-form" action="/members/new" method="post">
-        <div>
-            <input class="join-item" type="text" id="id" name="id">
-            <input class="join-item" type="text" id="idcheck" style="display:none">
-        </div>
-        <input class="join-item" type="password" name="pw">
+        <a class="logo" href="/" id="logo">Pencil Study</a>
+        <label class="join-item" for="id">아이디</label>
+        <input class="join-item" type="text" id="id" name="id">
+        <input class="join-item" type="text" id="idcheck" style="display:none">
+        <label class="join-item" for="pw">비밀번호</label>
+        <input class="join-item" type="password" id="pw" name="pw">
         <button class="join-item"type="submit">확인</button>
     </form>
 </div>

@@ -18,7 +18,7 @@ function idCheck(e){
 
     idcheck.style.display = "none"
 
-    if(e.key == "Tab" || e.type == "blur"){
+    if(e.key == "Tab" || e.type == "blur" & id.value != ""){
         $.ajax({
             type: "GET",
             url: "/members/idCheck",
