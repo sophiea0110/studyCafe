@@ -2,10 +2,11 @@
 <html lang="ko"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultreq.net.nz/thymeleaf/layou">
-    <head>
-        <th:block th:replace="fragments/config::configFragment"></th:block>
-    </head>
+    <head th:replace="fragments/config::configFragment"></head>
+
     <header th:replace="fragments/header::headerFragment"></header>
+
     <body layout:fragment="content"></body>
+
     <footer th:replace="fragments/footer::footerFragment"></footer>
 </html>

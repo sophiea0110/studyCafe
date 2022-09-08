@@ -4,15 +4,15 @@
     xmlns:layout="http://www.ultreq.net.nz/thymeleaf/layou"
     layout:decorate="~{fragments/layout}"
 >
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<!--
-<link rel="stylesheet" th:href="@{/css/index-style.css}" />
-<script type="text/javascript" th:src="@{/js/index.js}"></script>
-<script type="text/javascript" th:src="@{/js/jquery-3.6.0.min.js}"></script>
--->
+
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/index-style.css}" />
+</th:block>
+
+<th:block layout:fragment="script">
+    <script type="text/javascript" th:src="@{/js/index.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery-3.6.0.min.js}"></script>
+</th:block>
 <body layout:fragment="content">
     <!--
     <div class="container-top">
