@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <div class="container-top" th:fragment="headerFragment">
+        <input type="hidden"  id="MemberId" th:value="${session.MemberId}" />
+        <div th:text="${session.MemberId} + ' 님 환영합니다  '" th:if="${session.MemberId != empty}"></div>
+        <a th:if="${session.MemberId != empty}" href="/members/logout">로그아웃</a>
+        <a th:if="${session.MemberId == empty}" href="/members/login">로그인</a>
+    </div>
+</html>
