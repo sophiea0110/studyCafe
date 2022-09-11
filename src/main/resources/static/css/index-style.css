@@ -8,7 +8,7 @@
     height: 100px;
 
     align-items: center;
-    justify-content: end;
+    justify-content: space-between;
 
 }
 
@@ -86,4 +86,15 @@
     align-content: center;
     display: flex;
     flex-direction: column;
+}
+
+.nav {
+    margin : 10px;
+    text-decoration: none;
+}
+
+.logo {
+    color: dimgray;
+    font-size : 30px;
+    font-family: fantasy;
 }

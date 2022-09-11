@@ -7,12 +7,15 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
 <th:block layout:fragment="css">
     <link rel="stylesheet" th:href="@{/css/login-style.css}" />
 </th:block>
+
 <th:block layout:fragment="script">
 <script type="text/javascript" th:src="@{/js/login.js}"></script>
 </th:block>
+
 <body layout:fragment="content">
     <div class="login-page">
         <form class="login-form" action="/members/login" method="post">

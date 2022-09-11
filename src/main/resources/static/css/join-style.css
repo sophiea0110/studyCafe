@@ -1,9 +1,13 @@
 .join-page {
     display: flex;
-    height: 100vh;
+    height: 700px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    border: 1px solid black;
+    margin-top: 10px;
+    margin-bottom: 10px
 }
 
 .join-form {
@@ -11,9 +15,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 800px;
-    height: 1000px;
-    border: 5px solid lightsteelblue;
+    width: 700px;
+    height: 700px;
 }
 
 .join-item {
@@ -22,14 +25,13 @@
     height: 30px;
 }
 
-.logo {
+.join-title {
     display: flex;
     justify-content: space-around;
     align-items: baseline;
     width: 400px;
     height: 200px;
     font-family: fantasy;
-    font-size: 50px;
-    color: cornflowerblue;
+    font-size: 60px;
     text-decoration: none;
 }
