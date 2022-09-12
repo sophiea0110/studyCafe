@@ -40,17 +40,25 @@ public class MemberController {
 
     @PostMapping(value = "members/login")
     public String login(Member member, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        session.setAttribute("MemberId", member.getId());
+        return "redirect:/";
+    }
+
+    @GetMapping("members/memberCheck")
+    @ResponseBody
+    public String memberCheck(Member member, HttpServletRequest request){
         // id, pw 확인
         // F인 경우 index T인 경우 login
         boolean result = memberService.validateMember(member);
 
         if(result){
-            return "/members/login";
+            return "false";
         }
 
         HttpSession session = request.getSession();
         session.setAttribute("MemberId", member.getId());
-        return "redirect:/";
+        return "true";
     }
 
     @GetMapping("members/new")

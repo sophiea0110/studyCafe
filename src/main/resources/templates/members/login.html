@@ -18,10 +18,13 @@
 
 <body layout:fragment="content">
     <div class="login-page">
-        <form class="login-form" action="/members/login" method="post">
-            <input class="login-item" name="id" type="text" />
-            <input class="login-item" name="pw" type="password" />
-            <button class="login-item" type="submit">로그인</button>
+        <form class="login-form" action="/members/login" method="post" onsubmit="return emptyCheck();">
+            <div class="login-title" id="login-title">로그인</div>
+            <label class="login-item" for="id">아이디</label>
+            <input class="login-item input" id="id" name="id" type="text" />
+            <label class="login-item" for="pw">비밀번호</label>
+            <input class="login-item input" id="pw" name="pw" type="password" />
+            <button id="submit" type="submit">로그인</button>
         </form>
         <div class="info-user">
             <a class="user-item" href="">id/pw 찾기</a>

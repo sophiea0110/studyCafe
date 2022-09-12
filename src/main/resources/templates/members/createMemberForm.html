@@ -21,8 +21,11 @@
         <input class="join-item" type="text" id="id" name="id">
         <input class="join-item" type="text" id="idcheck" style="display:none">
         <label class="join-item" for="pw">비밀번호</label>
-        <input class="join-item" type="password" id="pw" name="pw">
-        <button class="join-item"type="submit">확인</button>
+        <input class="join-item" type="password" id="pw" name="pw" onchange="pwCheck()">
+        <label class="join-item" for="pw2">비밀번호 확인</label>
+        <input class="join-item" type="password" id="pw2" name="pw2" onchange="pwCheck()" onmouseout  ="pwCheck()">
+        <input class="join-item" type="text" id="pwcheck" style="display:none">
+        <button type="submit" id="submit">확인</button>
     </form>
 </div>
 </body>
