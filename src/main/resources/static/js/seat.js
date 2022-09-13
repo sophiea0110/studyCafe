@@ -42,7 +42,7 @@ function selectMemberSeat(e, MemberId){
         if(aleadyUseSeat == 0 & check == true){
             $.ajax({
                 type: "post",
-                url: "seat/select",
+                url: "/seat/select",
                 data: {"id" : MemberId.value, "seatNumber" : e.textContent},
                 success : function(data){
                     console.log(data)
@@ -62,7 +62,7 @@ function findMeberSeat(MemberId){
     let result;
     $.ajax({
         type: "GET",
-         url: "seat/findSeat",
+         url: "/seat/findSeat",
          async: false,
          data: { "MemberId" : MemberId.value },
          success : function(data){
@@ -88,7 +88,7 @@ function recoverSeat(e, MemberId){
         if($(e).attr('value') == MemberId.value & check == true){
             $.ajax({
                 type: "post",
-                url: "seat/recover",
+                url: "/seat/recover",
                 data: {"id" : MemberId.value, "seatNumber" : e.textContent},
                 success : function(data){
                     console.log(data)
@@ -109,7 +109,7 @@ function allStateSeat(){
 
     $.ajax({
             type: "GET",
-            url: "seat/AllfindSeat",
+            url: "/seat/AllfindSeat",
             async: false,
             success : function(data){
                 result = data.filter( f => f.seatNumber != 0)

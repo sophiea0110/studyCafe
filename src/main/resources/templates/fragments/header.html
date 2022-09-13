@@ -4,13 +4,16 @@
         <div>
             <a class="nav logo" href="/">Pencil Study</a>
         </div>
-        <div style="display : flex;">
+        <div>
+            <a class="nav-menu" href="/seat/seatForm">좌석 관리</a>
+        </div>
+        <div style="display : flex; align-items : center;">
             <input type="hidden"  id="MemberId" th:value="${session.MemberId}" />
-            <div class="nav"th:text="${session.MemberId} + ' 님 환영합니다  '" th:if="${session.MemberId != empty}"></div>
-            <a class="nav" th:if="${session.MemberId != empty}" href="/">정보수정</a>
-            <a class="nav" th:if="${session.MemberId != empty}" href="/members/logout">로그아웃</a>
-            <a class="nav" th:if="${session.MemberId == empty}" href="/members/login">로그인</a>
-            <a class="nav" th:if="${session.MemberId == empty}" href="/members/new">회원가입</a>
+            <div th:text="${session.MemberId} + ' 님 환영합니다  '" th:if="${session.MemberId != empty}"></div>
+            <a th:if="${session.MemberId != empty}" href="/">정보수정</a>
+            <a th:if="${session.MemberId != empty}" href="/members/logout">로그아웃</a>
+            <a th:if="${session.MemberId == empty}" href="/members/login">로그인</a>
+            <a th:if="${session.MemberId == empty}" href="/members/new">회원가입</a>
         </div>
     </div>
 </html>

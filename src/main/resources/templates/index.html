@@ -1,39 +1,14 @@
 <!DOCTYPE html>
 <html lang="en"
-    xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultreq.net.nz/thymeleaf/layou"
-    layout:decorate="~{fragments/layout}"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultreq.net.nz/thymeleaf/layou"
+      layout:decorate="~{fragments/layout}"
 >
-
-<th:block layout:fragment="css">
-    <link rel="stylesheet" th:href="@{/css/index-style.css}" />
-</th:block>
-
-<th:block layout:fragment="script">
-    <script type="text/javascript" th:src="@{/js/index.js}"></script>
-    <script type="text/javascript" th:src="@{/js/jquery-3.6.0.min.js}"></script>
-</th:block>
-<body layout:fragment="content">
-    <div class="container-mid">
-        <div class="seats">
-            <div id='seat' class="seat">1</div>
-            <div id="seat" class="seat">2</div>
-            <div id="seat" class="seat">3</div>
-            <div id="seat" class="seat">4</div>
-            <div id="seat" class="seat">5</div>
-            <div id="seat" class="seat">6</div>
-            <div id="seat" class="seat">7</div>
-            <div id="seat" class="seat">8</div>
-            <div id="seat" class="seat">9</div>
-            <div id="seat" class="seat">10</div>
-        </div>
-        <div class="infomation">
-            <div id="userseat"></div>
-            <div id="useseat"></div>
-            <div id="notuseSeat"></div>
-            <div class="boardseat" style="background-color: red;">사용중인 좌석</div>
-            <div class="boardseat" style="background-color: green;">사용 가능한 좌석</div>
-        </div>
-    </div>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body layout:fragment="content" >
+    <div style="height:700px">index page</div>
 </body>
 </html>

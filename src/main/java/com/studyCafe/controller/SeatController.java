@@ -21,6 +21,12 @@ public class SeatController {
         this.seatService = seatService;
     }
 
+    @GetMapping(value = "seat/seatForm")
+    public String seatForm(){
+        return "/seat/seatForm";
+    }
+
+
     @GetMapping(value = "seat/AllfindSeat")
     @ResponseBody
     public List<Member> AllfindSeat(){
