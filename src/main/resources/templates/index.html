@@ -4,11 +4,44 @@
       xmlns:layout="http://www.ultreq.net.nz/thymeleaf/layou"
       layout:decorate="~{fragments/layout}"
 >
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/index-style.css}" />
+</th:block>
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body layout:fragment="content" >
-    <div style="height:700px">index page</div>
+    <div class="section">
+        <input type="radio" name="slide" id="slide01" checked>
+        <input type="radio" name="slide" id="slide02">
+        <input type="radio" name="slide" id="slide03">
+        <div class="slidewrap">
+            <ul class="slidelist">
+                <li>
+                    <a>
+                        <label for="slide03" class="left"></label>
+                        <img src="/img/1.png">
+                        <label for="slide02" class="right"></label>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <label for="slide01" class="left"></label>
+                        <img src="/img/2.png">
+                        <label for="slide03" class="right"></label>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <label for="slide02" class="left"></label>
+                        <img src="/img/3.png">
+                        <label for="slide01" class="right"></label>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
 </body>
 </html>
