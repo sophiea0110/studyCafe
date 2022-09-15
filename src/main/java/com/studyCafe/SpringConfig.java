@@ -1,10 +1,8 @@
 package com.studyCafe;
 
 
-import com.studyCafe.repository.JpaMemberRepository;
-import com.studyCafe.repository.JpaSeatRepository;
-import com.studyCafe.repository.MemberRepository;
-import com.studyCafe.repository.SeatRepository;
+import com.studyCafe.repository.*;
+import com.studyCafe.service.BoardService;
 import com.studyCafe.service.MemberService;
 import com.studyCafe.service.SeatService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,4 +37,9 @@ public class SpringConfig {
     @Bean
     public SeatRepository seatRepository() { return new JpaSeatRepository(em); }
 
+    @Bean
+    public BoardService boardService() { return new BoardService(boardRepository()); }
+
+    @Bean
+    public BoardRepository boardRepository() { return new JpaBoardRepository(em); }
 }

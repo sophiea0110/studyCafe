@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultreq.net.nz/thymeleaf/layou"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/board-style.css}" />
+</th:block>
+
+<th:block layout:fragment="script">
+    <script type="text/javascript" th:src="@{/js/board.js}"></script>
+</th:block>
+
+<body layout:fragment="content">
+<div class="board-page">
+    <div class="board">
+        <div class="schema-list">
+            <div class="number">번호</div>
+            <div class="title">제목</div>
+            <div class="id">작성자</div>
+        </div>
+        <div th:each="board : ${boardList}" class="board-list">
+            <div th:text="${board.no}" class="number">1</div>
+            <div th:text="${board.title}" class="title">가입인사</div>
+            <div th:text="${board.id}" class="id">aaa</div>
+        </div>
+
+    </div>
+    <div class="board-index">
+        <a class="index-list" href="#">1</a>
+        <a class="index-list" href="#">2</a>
+        <a class="index-list" href="#">3</a>
+        <a class="index-list" href="#">4</a>
+        <a class="index-list" href="#">5</a>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+.board-page {
+    display: flex;
+    flex-direction: column;
+    height: 700px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid darkgray;
+    border-radius: 30px;
+}
+
+.board {
+    display: flex;
+    flex-direction: column;
+    width: 1000px;
+}
+
+.schema-list, .board-list {
+    display: flex;
+    margin: 10px;
+    text-align: center;
+}
+
+.number, .id, .index-list{
+    flex: 1;
+}
+
+.title {
+    flex: 3;
+}
+
+.board-index {
+    display: flex;
+    text-align: center;
+    margin: 15px;
+}
+
+
+
