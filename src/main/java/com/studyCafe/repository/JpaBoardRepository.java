@@ -30,6 +30,7 @@ public class JpaBoardRepository implements  BoardRepository{
         return result;
     }
     */
+
     @Override
     public int allBoardCount() {
         Object obj = em.createQuery("select count(m) from Board m")
@@ -43,24 +44,26 @@ public class JpaBoardRepository implements  BoardRepository{
 
     @Override
     public List<Board> selectBoard(PagingVO vo) {
-        System.out.println(vo.getCntPerPage());
-        String quere = "select m " +
-                            " from(" +
-                                "select rownum as rn, Board m " +
-                                "from(" +
-                                    "Board m " +
-                                    "order by no desc " +
-                                ") " +
-                            ") " +
-                        "where rn between start = :start and end = :end";
+
+        String quere  = ""
+            +  "SELECT RN, no, id, title, contents "
+            +  "FROM("
+            +  "SELECT ROWNUM RN, no, id, title, contents "
+            +  " FROM("
+            +          "SELECT no, id, title, contents "
+            +          "FROM BOARD m "
+            +          "ORDER BY no DESC "
+            +    ")"
+            + ")"
+            + "WHERE RN BETWEEN :start AND :end";
         System.out.println(quere);
-        List<Board> result = em.createQuery("SELECT * FROM ( SELECT ROWNUM RN, A.* FROM (SELECT * FROM BOARD ORDER BY no DESC ) A) WHERE RN BETWEEN 1 AND 10", Board.class)
-                .setParameter("start", 1)
-                .setParameter("end",10)
+        List<Board> result = em.createNativeQuery(quere, Board.class)
+                .setParameter("start", vo.getStart())
+                .setParameter("end",vo.getEnd())
                 .getResultList();
 
         result.stream().forEach( (list) -> {
-            System.out.println(list);
+            System.out.println(list.getNo());
         });
 
         return result;

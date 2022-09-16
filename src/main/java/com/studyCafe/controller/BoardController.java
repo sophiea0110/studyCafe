@@ -42,7 +42,7 @@ public class BoardController {
         }
         vo = new PagingVO(total, Integer.parseInt(nowPage));
         model.addAttribute("paging", vo);
-        model.addAttribute("viewAll", boardService.selectBoard(vo));
+        model.addAttribute("boardList", boardService.selectBoard(vo));
         return "board/boardList";
     }
 }

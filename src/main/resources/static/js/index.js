@@ -15,7 +15,8 @@ window.addEventListener("load", function(event) {
     $('.btn-prev').click(function(){
         if(currentPosition > 0){
             currentPosition--
-        }else {
+        }
+        else {
             currentPosition = 0;
         }
         slides.animate( {left : position[currentPosition]}, 500)

@@ -11,4 +11,5 @@ public interface BoardRepository {
     public int allBoardCount();
 
     public List<Board> selectBoard(PagingVO vo);
+
 }

@@ -18,7 +18,7 @@ public class BoardService {
 
     /*
     public List<Board> AllfindBoard(){
-        return boardRepository.allBoard();
+        return boardRepository.findAll();
     }
     */
     public Board writeBoard(Board board){
