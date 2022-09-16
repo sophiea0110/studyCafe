@@ -34,11 +34,11 @@ public class JpaSeatRepository implements SeatRepository{
     public List<Member> AllSeat() {
         List<Member> result = em.createQuery("select m from Member m", Member.class)
                 .getResultList();
-
+    /*
         result.stream().forEach(e ->  {
             System.out.println(e.getSeatNumber() + "번의 사용자는 " + e.getId());
         });
-
+    */
         return result;
     }
 
