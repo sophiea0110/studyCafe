@@ -63,7 +63,7 @@ public class MemberController {
 
     @GetMapping("members/new")
     public String createForm(){
-        return "/members/createMemberForm";
+        return "/members/createMember";
     }
 
     @PostMapping(value = "members/new")

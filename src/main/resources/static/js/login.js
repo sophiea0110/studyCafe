@@ -6,6 +6,7 @@ function emptyCheck(){;
     if(id.value.length == 0 && pw.value.length == 0){
         alert("id와 pw가 입력되지 않았습니다.")
         id.focus();
+
         return false
     }else if(id.value.length == 0){
             alert("id가 입력되지 않았습니다.")

@@ -30,8 +30,9 @@
 
 .board-index {
     display: flex;
+    align-items: center;
     text-align: center;
-    margin: 15px;
+    margin: 30px;
 }
 
 

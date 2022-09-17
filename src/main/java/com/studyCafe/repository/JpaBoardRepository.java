@@ -37,7 +37,7 @@ public class JpaBoardRepository implements  BoardRepository{
                 .getSingleResult()
                 .toString();
         int result = Integer.parseInt((String) obj);
-        System.out.println("총 게시판 수 : " + result);
+        //System.out.println("총 게시판 수 : " + result);
         return result;
 
     }
@@ -61,12 +61,12 @@ public class JpaBoardRepository implements  BoardRepository{
                 .setParameter("start", vo.getStart())
                 .setParameter("end",vo.getEnd())
                 .getResultList();
-
+        /*
         result.stream().forEach( (list) -> {
             System.out.print(list.getNo() + " ");
         });
         System.out.println();
-
+        */
         return result;
 
     }

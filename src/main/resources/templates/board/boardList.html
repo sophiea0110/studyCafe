@@ -25,19 +25,23 @@
             <div class="id">작성자</div>
         </div>
         <div th:each="board : ${boardList}" class="board-list">
-            <div th:text="${board.no}" class="number">1</div>
-            <div th:text="${board.title}" class="title">가입인사</div>
-            <div th:text="${board.id}" class="id">aaa</div>
+            <div th:text="${board.no}" class="number"></div>
+            <div th:text="${board.title}" class="title"></div>
+            <div th:text="${board.id}" class="id"></div>
         </div>
 
     </div>
+
     <div class="board-index">
-        <a class="index-list" href="/board/boardList?nowPage=1">1</a>
-        <a class="index-list" href="/board/boardList?nowPage=2">2</a>
-        <a class="index-list" href="#">3</a>
-        <a class="index-list" href="#">4</a>
-        <a class="index-list" href="#">5</a>
+        <a th:href="@{/board/boardList(nowPage=${paging.startPage})}">목록</a>
+        <a th:if="${paging.nowPage != paging.startPage}" th:href="@{/board/boardList(nowPage=${paging.nowPage - 1})}">이전</a>
+        <div th:each=" num : ${#numbers.sequence(paging.startPage, paging.endPage)}">
+            <a class="index-list" th:href="@{/board/boardList(nowPage=${num})}" th:text="${num}"></a>
+        </div>
+        <a th:if="${paging.nowPage != paging.endPage}" th:href="@{/board/boardList(nowPage=${paging.nowPage + 1})}">다음</a>
+        <a href="/board/boardWrite">글쓰기</a>
     </div>
+
 </div>
 </body>
 </html>

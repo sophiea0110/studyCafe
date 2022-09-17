@@ -22,17 +22,6 @@ public class BoardController {
 
     private BoardService boardService;
 
-    /*
-    @GetMapping(value = "/board/boardList")
-    public String boardForm(Board board, Model model){
-        List<Board> boardList = boardService.AllfindBoard();
-
-        System.out.println(boardList);
-        model.addAttribute("boardList", boardList);
-        return "/board/boardList";
-    }
-     */
-
     @GetMapping(value = "/board/boardList")
     public String boardList(PagingVO vo, Model model, @RequestParam(value="nowPage", required=false)String nowPage) {
 
@@ -44,9 +33,14 @@ public class BoardController {
 
         System.out.println("시작 페이지 = " + vo.getStartPage());
         System.out.println("마지막 페이지 = " + vo.getEndPage());
-
+        System.out.println("현재 페이지 = " + vo.getNowPage());
         model.addAttribute("paging", vo);
         model.addAttribute("boardList", boardService.selectBoard(vo));
         return "board/boardList";
+    }
+
+    @GetMapping(value = "/board/boardWrite")
+    public String boardWrite(){
+        return "board/boardWrite";
     }
 }

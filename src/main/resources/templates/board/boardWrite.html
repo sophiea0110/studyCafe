@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultreq.net.nz/thymeleaf/layou"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/boardWrite-style.css}" />
+</th:block>
+
+<th:block layout:fragment="script">
+    <script type="text/javascript" th:src="@{/js/boardWrite.js}"></script>
+</th:block>
+
+<body layout:fragment="content">
+<div class="boardwrite-page">
+글쓰기페이지 입니다.
+</div>
+</body>
+</html>
