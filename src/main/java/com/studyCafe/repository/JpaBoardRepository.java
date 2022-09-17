@@ -63,8 +63,9 @@ public class JpaBoardRepository implements  BoardRepository{
                 .getResultList();
 
         result.stream().forEach( (list) -> {
-            System.out.println(list.getNo());
+            System.out.print(list.getNo() + " ");
         });
+        System.out.println();
 
         return result;
 

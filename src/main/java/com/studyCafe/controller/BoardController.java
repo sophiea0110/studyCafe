@@ -41,6 +41,10 @@ public class BoardController {
             nowPage = "1";
         }
         vo = new PagingVO(total, Integer.parseInt(nowPage));
+
+        System.out.println("시작 페이지 = " + vo.getStartPage());
+        System.out.println("마지막 페이지 = " + vo.getEndPage());
+
         model.addAttribute("paging", vo);
         model.addAttribute("boardList", boardService.selectBoard(vo));
         return "board/boardList";
