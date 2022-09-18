@@ -22,14 +22,6 @@ public class JpaBoardRepository implements  BoardRepository{
         em.persist(board);
         return board;
     }
-    /*
-    @Override
-    public List<Board> allBoard() {
-        List<Board> result = em.createQuery("select m from Board m", Board.class)
-                .getResultList();
-        return result;
-    }
-    */
 
     @Override
     public int allBoardCount() {
@@ -44,7 +36,6 @@ public class JpaBoardRepository implements  BoardRepository{
 
     @Override
     public List<Board> selectBoard(PagingVO vo) {
-
         String quere  = ""
             +  "SELECT RN, no, id, title, contents "
             +  "FROM("
@@ -56,18 +47,11 @@ public class JpaBoardRepository implements  BoardRepository{
             +    ")"
             + ")"
             + "WHERE RN BETWEEN :start AND :end";
-        System.out.println(quere);
+        //System.out.println(quere);
         List<Board> result = em.createNativeQuery(quere, Board.class)
                 .setParameter("start", vo.getStart())
                 .setParameter("end",vo.getEnd())
                 .getResultList();
-        /*
-        result.stream().forEach( (list) -> {
-            System.out.print(list.getNo() + " ");
-        });
-        System.out.println();
-        */
         return result;
-
     }
 }

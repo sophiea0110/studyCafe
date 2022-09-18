@@ -6,10 +6,9 @@ import javax.persistence.*;
 public class Board {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     private Long no;
 
-
-    @Id
     private String id;
     private String title;
     private String contents;

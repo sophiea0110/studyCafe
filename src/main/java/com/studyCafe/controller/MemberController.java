@@ -79,7 +79,4 @@ public class MemberController {
         return memberService.validateDuplicateMember(member);
     }
 
-
-
-
 }

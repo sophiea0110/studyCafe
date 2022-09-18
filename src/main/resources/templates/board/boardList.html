@@ -39,7 +39,7 @@
             <a class="index-list" th:href="@{/board/boardList(nowPage=${num})}" th:text="${num}"></a>
         </div>
         <a th:if="${paging.nowPage != paging.endPage}" th:href="@{/board/boardList(nowPage=${paging.nowPage + 1})}">다음</a>
-        <a href="/board/boardWrite">글쓰기</a>
+        <a th:href="@{/board/boardWrite}">글쓰기</a>
     </div>
 
 </div>

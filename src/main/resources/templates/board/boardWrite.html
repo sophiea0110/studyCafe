@@ -18,19 +18,28 @@
 
 <body layout:fragment="content">
 <div class="boardwrite-page">
-    <div>
-        <div>제목</div>
-        <div class="board-title">밤 12시에 병사가 전화걸어서 빡친 연대장</div>
-    </div>
-    <div>
-        <div>아이디</div>
-        <div class="id">수면제없으면못잠</div>
-    </div>
-    <div class="contents">
-        #Ukraine: Just a small pile of 226 3OF26 125mm high-explosive tank projectiles,
-        belonging to the Russian army, was captured by Ukrainian forces in
-        Izium, #Kharkiv Oblast.
-    </div>
+    <form class="boardwrite-form" action="/board/boardWrite" method="post">
+            <div class="boardwrite-page">
+                <div class="title-list">
+                    <label class="title-label">제목</label>
+                    <input type="text" class="title" name="title" />
+                </div>
+                <div class="id-list">
+                    <label class="id-label">아이디</label>
+                    <div class="id" th:text="${session.MemberId}"/>
+                    <input type="hidden" name="id" th:value="${session.MemberId}">
+                </div>
+                <div class="contents-list">
+                    <input type="text" class="contents" name="contents" />
+                </div>
+                <div>
+                    <a th:href="@{/board/boardList}">글목록</a>
+                    <a href="#">이전글</a>
+                    <a href="#">다음글</a>
+                    <button type="submit">등록</button>
+                </div>
+            </div>
+    </form>
 </div>
 </body>
 </html>
