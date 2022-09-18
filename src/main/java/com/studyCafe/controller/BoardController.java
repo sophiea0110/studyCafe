@@ -52,6 +52,14 @@ public class BoardController {
     public String boardWrite(Board board){
         System.out.println("작성자 : "+ board.getId());
         boardService.writeBoard(board);
-        return "/board/boardList";
+        return "redirect:/board/boardList";
     }
+
+    @GetMapping(value = "/board/boardDetail")
+    public String boardDetail(@RequestParam(value="no", required = false) Long no, Model model, Board board){
+        board = boardService.DetailBoard(no);
+        model.addAttribute("boardDetail", board);
+        return "board/boardDetail";
+    }
+
 }

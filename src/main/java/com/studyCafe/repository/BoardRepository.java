@@ -12,4 +12,5 @@ public interface BoardRepository {
 
     public List<Board> selectBoard(PagingVO vo);
 
+    public Board findByNo(Long no);
 }

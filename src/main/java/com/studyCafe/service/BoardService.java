@@ -33,4 +33,8 @@ public class BoardService {
     public List<Board> selectBoard(PagingVO vo){
         return boardRepository.selectBoard(vo);
     }
+
+    public Board DetailBoard(Long no){
+        return boardRepository.findByNo(no);
+    }
 }

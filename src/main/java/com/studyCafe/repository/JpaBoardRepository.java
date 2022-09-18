@@ -54,4 +54,18 @@ public class JpaBoardRepository implements  BoardRepository{
                 .getResultList();
         return result;
     }
+
+    @Override
+    public Board findByNo(Long no) {
+        Board result = (Board) em.createQuery("select m from Board m where no=:no", Board.class)
+                .setParameter("no", no)
+                .getSingleResult();
+
+        System.out.println(result.getNo());
+        System.out.println(result.getId());
+        System.out.println(result.getTitle());
+        System.out.println(result.getContents());
+
+        return result;
+    }
 }

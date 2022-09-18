@@ -26,7 +26,7 @@
         </div>
         <div th:each="board : ${boardList}" class="board-list">
             <div th:text="${board.no}" class="number"></div>
-            <div th:text="${board.title}" class="title"></div>
+            <div th:onclick="|location.href='@{/board/boardDetail(no=${board.no})}'|" th:text="${board.title}" class="title"></div>
             <div th:text="${board.id}" class="id"></div>
         </div>
 
