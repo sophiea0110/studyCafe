@@ -1,0 +1,59 @@
+.boardmodify-page {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    height: 700px;
+}
+
+.title-list {
+    display: flex;
+
+    align-items: center;
+
+    width: 800px;
+
+    margin: 10px;
+
+    flex: 1;
+}
+
+.id-list {
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+
+    width: 800px;
+
+    flex: 1;
+}
+
+.contents-list {
+    display: flex;
+
+
+    width: 800px;
+
+    margin: 10px;
+
+    flex: 10;
+}
+
+.title-label, .id-label {
+    margin: 10px;
+    flex: 1;
+}
+
+.title, .id, .contents {
+    margin: 10px;
+    padding: 10px;
+    flex: 5;
+}
+
+.id {
+    border: none;
+    background-color: white;
+}

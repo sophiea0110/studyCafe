@@ -18,6 +18,9 @@
 
 <body layout:fragment="content">
 <div class="boardwrite-page">
+  <input type="hidden" th:value="${boardDetail.no}">
+  <input type="hidden" id="MemberId" value="${session.MemberId}">
+
   <div class="title-list">
     <label class="title-label">제목</label>
     <div class="title" th:text="${boardDetail.title}"></div>
@@ -28,6 +31,12 @@
   </div>
   <div class="contents-list">
     <div class="contents" th:text="${boardDetail.contents}"></div>
+  </div>
+  <div>
+    <a href="/board/boardList">목록</a>
+    <a th:if="${session.MemberId == boardDetail.id}" th:href="@{/board/boardModify(no=${boardDetail.no})}">수정</a>
+    <a th:if="${session.MemberId == boardDetail.id}" th:href="@{/board/boardDelete(no=${boardDetail.no})}">삭제</a>
+    <input type="button" id="write" onclick="idCheck()" value="글쓰기"/>
   </div>
 </div>
 </body>

@@ -16,6 +16,9 @@ window.addEventListener("load", function(event) {
         if(currentPosition > 0){
             currentPosition--
         }
+        else if(currentPosition == 0){
+            currentPosition = 2;
+        }
         else {
             currentPosition = 0;
         }

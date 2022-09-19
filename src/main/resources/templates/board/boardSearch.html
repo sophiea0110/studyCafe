@@ -17,8 +17,8 @@
 </th:block>
 
 <body layout:fragment="content">
-<div class="board-page">
-<form class="board-form" action="/board/boardSearch" method="get">
+<div class="boardSearch-page">
+    <form class="board-form" action="/board/boardSearch" method="get">
     <div class="board">
         <input type="hidden" id="MemberId" value="${session.MemberId}">
 
@@ -35,24 +35,23 @@
     </div>
     <div class="board-index">
         <a th:href="@{/board/boardList(nowPage=${paging.startPage})}">목록</a>
-        <a th:if="${paging.nowPage != paging.startPage}" th:href="@{/board/boardList(nowPage=${paging.nowPage - 1})}">이전</a>
+        <a th:if="${paging.nowPage != paging.startPage}" th:href="@{/board/boardSearch(nowPage=${paging.nowPage - 1}, searchKind=${searchKind}, searchWord=${searchWord} )}">이전</a>
         <div th:each=" num : ${#numbers.sequence(paging.startPage, paging.endPage)}">
-            <a class="index-list" th:href="@{/board/boardList(nowPage=${num})}" th:text="${num}"></a>
+            <a class="index-list" th:href="@{/board/boardSearch(nowPage=${num}, searchKind=${searchKind}, searchWord=${searchWord})}" th:text="${num}"></a>
         </div>
-        <a th:if="${paging.nowPage != paging.endPage}" th:href="@{/board/boardList(nowPage=${paging.nowPage + 1})}">다음</a>
+        <a th:if="${paging.nowPage != paging.endPage}" th:href="@{/board/boardSearch(nowPage=${paging.nowPage + 1}, searchKind=${searchKind}, searchWord=${searchWord})}">다음</a>
         <input type="button" id="write" onclick="idCheck()" value="글쓰기"/>
     </div>
     <div class="board-search">
-        <div th:text="${searchKind}"></div>
         <select id="search-kind" name="searchKind">
             <option value="id">이름</option>
             <option value="title">제목</option>
             <option value="contents">내용</option>
         </select>
-        <input type="text" id="searchWord" name="searchWord" th:value="${searchWord}">
+        <input type="text" id="searchWord" name="searchWord">
         <input type="submit" id="search-btn" value="찾기">
     </div>
-</form>
+    </form>
 </div>
 </body>
 </html>

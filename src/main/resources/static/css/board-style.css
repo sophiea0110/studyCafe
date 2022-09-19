@@ -36,5 +36,12 @@
     margin: 30px;
 }
 
+.board-search {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 30px;
+}
+
 
 

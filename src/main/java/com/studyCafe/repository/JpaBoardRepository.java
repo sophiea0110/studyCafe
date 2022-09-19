@@ -6,6 +6,7 @@ import com.studyCafe.domain.PagingVO;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.sound.midi.SysexMessage;
 import java.util.List;
 
 
@@ -32,6 +33,21 @@ public class JpaBoardRepository implements  BoardRepository{
         //System.out.println("총 게시판 수 : " + result);
         return result;
 
+    }
+
+    @Override
+    public int SearchBoardCount(String searchKind, String searchWord) {
+        String quere = ""
+                + "select count(m) "
+                + "from Board m "
+                + "where " + searchKind + " like " + "'%" + searchWord + "%'";
+
+        Object obj = em.createQuery(quere)
+                .getSingleResult()
+                .toString();
+        int result = Integer.parseInt((String) obj);
+        System.out.println("SearchCount" + result);
+        return result;
     }
 
     @Override
@@ -68,4 +84,54 @@ public class JpaBoardRepository implements  BoardRepository{
 
         return result;
     }
+
+    @Override
+    public int updataBoard(Board board) {
+        int result =  em.createQuery("Update Board m " +
+                        "set title = :title, contents = :contents" +
+                        " where no = :no")
+                .setParameter("title", board.getTitle())
+                .setParameter("contents", board.getContents())
+                .setParameter("no", board.getNo())
+                .executeUpdate();
+        System.out.println("업데이트 :" + result);
+        return result;
+    }
+
+    @Override
+    public int deleteBoard(Long no) {
+        int result = em.createQuery("delete from Board m where no = :no")
+                .setParameter("no", no)
+                .executeUpdate();
+        return result;
+    }
+
+    @Override
+    public List<Board> findByWord(String searchKind, String searchWord, PagingVO vo) {
+        /*
+        String quere = ""
+                + "select m "
+                + "from Board m "
+                + "where " + searchKind + " like " + "'%" + searchWord + "%'";
+        */
+        String quere = ""
+                +  "SELECT RN, no, id, title, contents "
+                +  "FROM("
+                +  "SELECT ROWNUM RN, no, id, title, contents "
+                +  " FROM("
+                +          "SELECT no, id, title, contents "
+                +          "FROM BOARD m "
+                +          "WHERE " + searchKind + " LIKE " + "'%" + searchWord + "%'"
+                +          "ORDER BY no DESC "
+                +    ")"
+                + ")"
+                + "WHERE RN BETWEEN :start AND :end";
+        List<Board> result = em.createNativeQuery(quere, Board.class)
+                .setParameter("start", vo.getStart())
+                .setParameter("end", vo.getEnd())
+                .getResultList();
+        System.out.println(searchKind+" 에서 " + searchWord +" 를 검색한 결과 " + result.size()+" 개를 찾았습니다!");
+        return result;
+    }
+
 }

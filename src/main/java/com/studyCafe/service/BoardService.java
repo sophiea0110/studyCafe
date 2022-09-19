@@ -30,11 +30,27 @@ public class BoardService {
         return boardRepository.allBoardCount();
     }
 
+    public int SearchBoardCount(String searchKind, String searchWord){
+        return boardRepository.SearchBoardCount(searchKind, searchWord);
+    }
+
     public List<Board> selectBoard(PagingVO vo){
         return boardRepository.selectBoard(vo);
     }
 
     public Board DetailBoard(Long no){
         return boardRepository.findByNo(no);
+    }
+
+    public int ModifyBoard(Board board) {
+        return boardRepository.updataBoard(board);
+    }
+
+    public int deleteBoard(Long no) {
+        return boardRepository.deleteBoard(no);
+    }
+
+    public List<Board> searchBoard(String searchKind, String searchWord, PagingVO vo) {
+        return boardRepository.findByWord(searchKind, searchWord, vo);
     }
 }
