@@ -92,8 +92,15 @@ public class BoardController {
 
         int total = boardService.SearchBoardCount(searchKind, searchWord);
         System.out.println("갯수" + total);
+
         PagingVO vo = new PagingVO(total, Integer.parseInt(nowPage));
+
+        if(vo.getEndPage() == 0){vo.setEndPage(1);
+        }
+
+
         List<Board> board =  boardService.searchBoard(searchKind, searchWord, vo);
+
 
         System.out.println("시작" + vo.getStart());
         System.out.println("끝" + vo.getEnd());
