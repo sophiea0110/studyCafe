@@ -31,6 +31,7 @@
 
 .board-index {
     display: flex;
+    justify-content: center;
     align-items: center;
     text-align: center;
     margin: 30px;
@@ -38,9 +39,33 @@
 
 .board-search {
     display: flex;
+    justify-content: center;
     align-items: center;
     text-align: center;
     margin: 30px;
+}
+
+.search-kind, .search-btn{
+    width: 100px;
+    height: 30px;
+
+    text-align: center;
+
+    border: 1px solid darkgray;
+    border-radius: 30px;
+
+    background-color: white;
+}
+
+.searchWord {
+    width: 300px;
+    height: 30px;
+
+    border: 1px solid darkgray;
+    border-radius: 30px;
+
+    margin-left: 30px;
+    margin-right: 30px;
 }
 
 
