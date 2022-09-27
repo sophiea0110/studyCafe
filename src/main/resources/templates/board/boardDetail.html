@@ -13,12 +13,12 @@
 </th:block>
 
 <th:block layout:fragment="script">
-  <script type="text/javascript" th:src="@{/js/boardDetail.js}"></script>
+  <script type="text/javascript" th:src="@{/js/board.js}"></script>
 </th:block>
 
 <body layout:fragment="content">
 <div class="boardwrite-page">
-  <input type="hidden" th:value="${boardDetail.no}">
+  <input type="hidden" id="no" th:value="${boardDetail.no}">
   <input type="hidden" id="MemberId" value="${session.MemberId}">
 
   <div class="title-list">
@@ -27,16 +27,16 @@
   </div>
   <div class="id-list">
     <label class="id-label">아이디</label>
-    <div class="id" th:text="${boardDetail.id}"></div>
+    <div class="id" id="id" th:text="${boardDetail.id}"></div>
   </div>
   <div class="contents-list">
     <div class="contents" th:text="${boardDetail.contents}"></div>
   </div>
-  <div>
+  <div style="margin:30px">
     <a href="/board/boardList">목록</a>
-    <a th:if="${session.MemberId == boardDetail.id}" th:href="@{/board/boardModify(no=${boardDetail.no})}">수정</a>
-    <a th:if="${session.MemberId == boardDetail.id}" th:href="@{/board/boardDelete(no=${boardDetail.no})}">삭제</a>
-    <input type="button" id="write" onclick="idCheck()" value="글쓰기"/>
+    <a onclick="idCheckModify()">수정</a>
+    <a onclick="idCheckDelete()">삭제</a>
+    <a id="write" onclick="loginCheck()" value="글쓰기"/>
   </div>
 </div>
 </body>

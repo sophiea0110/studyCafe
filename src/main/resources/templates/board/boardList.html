@@ -40,7 +40,7 @@
             <a class="index-list" th:href="@{/board/boardList(nowPage=${num})}" th:text="${num}"></a>
         </div>
         <a th:if="${paging.nowPage != paging.endPage}" th:href="@{/board/boardList(nowPage=${paging.nowPage + 1})}">다음</a>
-        <input type="button" id="write" onclick="idCheck()" value="글쓰기"/>
+        <a id="write" onclick="idCheck()">글쓰기</a>
     </div>
     <div class="board-search">
         <div th:text="${searchKind}"></div>

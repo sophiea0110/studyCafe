@@ -1,6 +1,7 @@
 package com.studyCafe.repository;
 
 import com.studyCafe.domain.Member;
+import com.studyCafe.domain.Seat;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -40,6 +41,11 @@ public class JpaSeatRepository implements SeatRepository{
         });
     */
         return result;
+    }
+
+    @Override
+    public void save(Seat seat) {
+        em.persist(seat);
     }
 
     @Override

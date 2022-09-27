@@ -1,6 +1,7 @@
 package com.studyCafe.service;
 
 import com.studyCafe.domain.Member;
+import com.studyCafe.domain.Seat;
 import com.studyCafe.repository.MemberRepository;
 import com.studyCafe.repository.SeatRepository;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,9 +14,11 @@ public class SeatService {
 
     private SeatRepository seatRepository;
 
+
     public SeatService(SeatRepository seatRepository) {
         this.seatRepository = seatRepository;
     }
+    public void saveSeat(Seat seat) {  seatRepository.save(seat); }
 
     public List<Member> AllcurrentSeat() { return seatRepository.AllSeat(); }
 

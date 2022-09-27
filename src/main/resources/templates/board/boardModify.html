@@ -13,17 +13,17 @@
 </th:block>
 
 <th:block layout:fragment="script">
-    <script type="text/javascript" th:src="@{/js/boardModify.js}"></script>
+    <script type="text/javascript" th:src="@{/js/board.js}"></script>
 </th:block>
 
 <body layout:fragment="content">
 <div class="boardmodify-page">
-    <form class="boardmodify-form" action="/board/boardModify" method="post">
+    <form class="boardmodify-form" id="form" action="/board/boardModify" method="post">
         <div class="boardmodify-page">
             <input type="hidden" name="no" th:value="${boardDetail.no}">
             <div class="title-list">
                 <label class="title-label">제목</label>
-                <input type="text" class="title" name="title" th:value="${boardDetail.title}"/>
+                <input type="text" class="title" id="title" name="title" th:value="${boardDetail.title}"/>
             </div>
             <div class="id-list">
                 <label class="id-label">아이디</label>
@@ -31,11 +31,11 @@
                 <input type="hidden" name="id" th:value="${session.MemberId}">
             </div>
             <div class="contents-list">
-                <input type="text" class="contents" name="contents" th:value="${boardDetail.contents}"/>
+                <textarea class="contents" id="contents" name="contents" th:value="${boardDetail.contents}" th:text="${boardDetail.contents}"></textarea>
             </div>
-            <div>
+            <div style="margin:30px">
                 <a th:href="@{/board/boardList}">글목록</a>
-                <button type="submit">수정 완료</button>
+                <a onclick="boardEmpty()">등록</a>
             </div>
         </div>
     </form>
