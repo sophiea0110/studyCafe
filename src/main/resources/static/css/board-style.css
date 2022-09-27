@@ -1,4 +1,4 @@
-.board-page {
+.board-page, .boardSearch-page{
     display: flex;
     flex-direction: column;
     height: 700px;

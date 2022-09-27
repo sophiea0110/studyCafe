@@ -27,6 +27,8 @@ function idCheckDelete(){
     let MemberId = document.getElementById("MemberId").value
     let id = document.getElementById("id").textContent
     let no = document.getElementById("no").value
+    console.log(no)
+
 
     if(MemberId == id){
         location.href="/board/boardDelete?no="+no
