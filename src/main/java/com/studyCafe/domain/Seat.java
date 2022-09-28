@@ -14,8 +14,6 @@ public class Seat {
     private Date startTime;
     @Column(name="ENDTIME")
     private Date endTime;
-    @Column(name="REMAININGTIME")
-    private Date remainingTime;
 
     public String getId() {
         return id;
@@ -47,13 +45,5 @@ public class Seat {
 
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
-    }
-
-    public Date getRemainingTime() {
-        return remainingTime;
-    }
-
-    public void setRemainingTime(Date remainingTime) {
-        this.remainingTime = remainingTime;
     }
 }

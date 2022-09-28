@@ -16,6 +16,7 @@ public class JpaSeatRepository implements SeatRepository{
         this.em = em;
     }
 
+    /*
     @Override
     public int updateBySeatNumber(Member member) {
         return em.createQuery("UPDATE Member m SET m.seatNumber = :seatNumber where m.id = :id")
@@ -23,7 +24,7 @@ public class JpaSeatRepository implements SeatRepository{
                 .setParameter("id", member.getId())
                 .executeUpdate();
     }
-
+    */
     @Override
     public int initBySeatNumber(Member member) {
         return em.createQuery("UPDATE Member m SET m.seatNumber = 0 where m.id = :id")

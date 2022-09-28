@@ -7,15 +7,15 @@ public class Member {
     @Id
     private String id;
     private String pw;
-    @Column(name="SEATNUMBER")
-    private long seatNumber;
-    //테스트중
-    public long getSeatNumber() {
-        return seatNumber;
+    private String email;
+    private String tiket;
+
+    public String getTiket() {
+        return tiket;
     }
 
-    public void setSeatNumber(long seatNumber) {
-        this.seatNumber = seatNumber;
+    public void setTiket(String tiket) {
+        this.tiket = tiket;
     }
 
     public String getId() {
@@ -32,5 +32,13 @@ public class Member {
 
     public void setPw(String pw) {
         this.pw = pw;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

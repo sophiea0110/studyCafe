@@ -39,7 +39,7 @@ public class SeatController {
         //System.out.println("FindSeat MemberId = " + MemberId);
         return seatService.findSeat(MemberId);
     }
-
+    /*
     @PostMapping(value = "seat/select")
     @ResponseBody
     public int SeatChoice(Member member){
@@ -47,6 +47,7 @@ public class SeatController {
         //System.out.println("SeatChoice seatNumber : " + member.getSeatNumber());
         return seatService.assignSeat(member);
     }
+   */
     @PostMapping(value = "seat/recover")
     @ResponseBody
     public int SeatRecover(Member member){

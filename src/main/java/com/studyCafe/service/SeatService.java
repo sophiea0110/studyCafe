@@ -23,10 +23,11 @@ public class SeatService {
     public List<Member> AllcurrentSeat() { return seatRepository.AllSeat(); }
 
     public int findSeat(String MemberId) { return seatRepository.searchSeat(MemberId); }
-
+    /*
     public int assignSeat(Member member){
         return seatRepository.updateBySeatNumber(member);
     }
+     */
 
     public int returnSeat(Member member){
         return seatRepository.initBySeatNumber(member);

@@ -1,8 +1,11 @@
 package com.studyCafe;
 
+import com.studyCafe.domain.Member;
 import com.studyCafe.domain.Seat;
 import com.studyCafe.repository.JpaSeatRepository;
+import com.studyCafe.repository.MemberRepository;
 import com.studyCafe.repository.SeatRepository;
+import com.studyCafe.service.MemberService;
 import com.studyCafe.service.SeatService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,8 @@ import javax.transaction.Transactional;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Date;
 
 @SpringBootTest
@@ -19,46 +24,42 @@ class StudyCafeApplicationTests {
 
 	@Autowired SeatService seatService;
 	@Autowired SeatRepository seatRepository;
+	@Autowired MemberService memberService;
+	@Autowired MemberRepository memberRepository;
 
 	@Test
-	void SeatInsert(){
+	void 좌석선택(){
 
 		Seat seat = new Seat();
+		LocalDateTime now = LocalDateTime.now();
 
-		seat.setId("song");
-		seat.setSeatNumber(10);
+		SimpleDateFormat f = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분 ss초");
 
-		String aDate = "2022-01-01";
-		String bDate = "2023-01-01";
-		String cDate = "0001-01-01";
+		Date f1;
+		Date f2;
+		try {
+			f1 = f.parse(String.valueOf(now));
 
-		SimpleDateFormat a = new SimpleDateFormat("yyyymmdd");
-		SimpleDateFormat b = new SimpleDateFormat("yyyymmdd");
-		SimpleDateFormat c = new SimpleDateFormat("yyyymmdd");
+		} catch (ParseException e) {
+			throw new RuntimeException(e);
+		}
+		System.out.println(now);
 
-		Date x = null;
-		Date y = null;
-		Date z = null;
-
-	try {
-		x = a.parse(aDate);
-		y = b.parse(bDate);
-		z = a.parse(cDate);
-	} catch (ParseException e) {
-		throw new RuntimeException(e);
-	}
-
-	seat.setStartTime(x);
-	seat.setEndTime(y);
-	seat.setRemainingTime(z);
-
-	System.out.println(seat.getId());
-	System.out.println(seat.getSeatNumber());
-	System.out.println(seat.getStartTime());
-	System.out.println(seat.getEndTime());
-	System.out.println(seat.getRemainingTime());
-
-	seatService.saveSeat(seat);
+		System.out.println(f1);
 
 	}
+
+	@Test
+	void 회원가입(){
+		Member member = new Member();
+
+		member.setId("aaa");
+		member.setPw("123");
+		member.setEmail("aaa@aaa");
+		member.setTiket("null");
+
+		memberService.join(member);
+
+	}
+
 }
