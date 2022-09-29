@@ -35,16 +35,14 @@ class StudyCafeApplicationTests {
 
 		SimpleDateFormat f = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분 ss초");
 
-		Date f1;
+		Date f1 = null;
 		Date f2;
+
 		try {
-			f1 = f.parse(String.valueOf(now));
+			f1 = f.parse(now.toString());
+		}catch (IllegalStateException | ParseException c){
 
-		} catch (ParseException e) {
-			throw new RuntimeException(e);
 		}
-		System.out.println(now);
-
 		System.out.println(f1);
 
 	}
