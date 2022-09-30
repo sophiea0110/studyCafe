@@ -33,48 +33,23 @@ class StudyCafeApplicationTests {
 	@Test
 	void 좌석선택() throws ParseException {
 
-		SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		DateTimeFormatter form = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:MM:SS");
+
+		LocalDateTime localStart = LocalDateTime.now();
+		Timestamp stampStart = Timestamp.valueOf(localStart.format(form));
+
+		LocalDateTime localEnd = localStart.plusHours(4);
+		Timestamp stampEnd = Timestamp.valueOf(localEnd.format(form));
+
+		System.out.println(stampStart);
+		System.out.println(stampEnd);
+
 
 		Seat seat = new Seat();
-
-		seat.setId("aaa");
-		seat.setSeatNumber(1);
-
-		Timestamp nowTime = new Timestamp(System.currentTimeMillis());
-		Timestamp start = Timestamp.valueOf(s.format(nowTime));
-
-		LocalDateTime setTime
-				= LocalDateTime.of(2022, 9, 30, 21, 0, 0);
-
-		Timestamp t1 = Timestamp.valueOf(setTime);
-		Timestamp end = Timestamp.valueOf(s.format(t1));
-
-		System.out.println(start);
-		System.out.println(end);
-
-		/*
-		String startStr = start.format(
-				DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
-		);
-
-		String endStr = end.format(
-				DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
-		);
-
-		Date startDate = s.parse(startStr);
-		Date endDate = s.parse(endStr);
-
-		System.out.println(startDate);
-		System.out.println(endDate);
-		*/
-
-
-
-
-		seat.setId("aaa");
-		seat.setSeatNumber(1);
-		seat.setStartTime(start);
-		seat.setEndTime(end);
+		seat.setId("iii");
+		seat.setSeatNumber(9);
+		seat.setStartTime(stampStart);
+		seat.setEndTime(stampEnd);
 
 		seatService.saveSeat(seat);
 
@@ -82,7 +57,7 @@ class StudyCafeApplicationTests {
 
 	@Test
 	void 좌석조회(){
-		String MemberId = "aaa";
+		String MemberId = "ccc";
 		List<Seat> seat = seatService.findSeat(MemberId);
 
 		seat.stream().forEach( s -> {
