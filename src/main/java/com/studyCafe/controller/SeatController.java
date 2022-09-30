@@ -1,6 +1,7 @@
 package com.studyCafe.controller;
 
 import com.studyCafe.domain.Member;
+import com.studyCafe.domain.Seat;
 import com.studyCafe.service.MemberService;
 import com.studyCafe.service.SeatService;
 import org.springframework.stereotype.Controller;
@@ -35,7 +36,7 @@ public class SeatController {
 
     @GetMapping(value = "seat/findSeat")
     @ResponseBody
-    public int FindSeat(@RequestParam String MemberId){
+    public List<Seat> FindSeat(@RequestParam String MemberId){
         //System.out.println("FindSeat MemberId = " + MemberId);
         return seatService.findSeat(MemberId);
     }

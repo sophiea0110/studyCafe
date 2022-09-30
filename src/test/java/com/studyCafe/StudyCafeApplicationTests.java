@@ -12,12 +12,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.transaction.Transactional;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.List;
 
 @SpringBootTest
 class StudyCafeApplicationTests {
@@ -28,25 +31,68 @@ class StudyCafeApplicationTests {
 	@Autowired MemberRepository memberRepository;
 
 	@Test
-	void 좌석선택(){
+	void 좌석선택() throws ParseException {
+
+		SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
 		Seat seat = new Seat();
-		LocalDateTime now = LocalDateTime.now();
 
-		SimpleDateFormat f = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분 ss초");
+		seat.setId("aaa");
+		seat.setSeatNumber(1);
 
-		Date f1 = null;
-		Date f2;
+		Timestamp nowTime = new Timestamp(System.currentTimeMillis());
+		Timestamp start = Timestamp.valueOf(s.format(nowTime));
 
-		try {
-			f1 = f.parse(now.toString());
-		}catch (IllegalStateException | ParseException c){
+		LocalDateTime setTime
+				= LocalDateTime.of(2022, 9, 30, 21, 0, 0);
 
-		}
-		System.out.println(f1);
+		Timestamp t1 = Timestamp.valueOf(setTime);
+		Timestamp end = Timestamp.valueOf(s.format(t1));
+
+		System.out.println(start);
+		System.out.println(end);
+
+		/*
+		String startStr = start.format(
+				DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+		);
+
+		String endStr = end.format(
+				DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+		);
+
+		Date startDate = s.parse(startStr);
+		Date endDate = s.parse(endStr);
+
+		System.out.println(startDate);
+		System.out.println(endDate);
+		*/
+
+
+
+
+		seat.setId("aaa");
+		seat.setSeatNumber(1);
+		seat.setStartTime(start);
+		seat.setEndTime(end);
+
+		seatService.saveSeat(seat);
 
 	}
 
+	@Test
+	void 좌석조회(){
+		String MemberId = "aaa";
+		List<Seat> seat = seatService.findSeat(MemberId);
+
+		seat.stream().forEach( s -> {
+			System.out.println(s.getId());
+			System.out.println(s.getSeatNumber());
+			System.out.println(s.getStartTime());
+			System.out.println(s.getEndTime());
+		});
+
+	}
 	@Test
 	void 회원가입(){
 		Member member = new Member();

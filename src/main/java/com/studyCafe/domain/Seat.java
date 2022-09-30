@@ -3,6 +3,7 @@ package com.studyCafe.domain;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.sql.Timestamp;
 import java.util.Date;
 @Entity
 public class Seat {
@@ -11,9 +12,9 @@ public class Seat {
     @Column(name="SEATNUMBER")
     private long seatNumber;
     @Column(name="STARTTIME")
-    private Date startTime;
+    private Timestamp startTime;
     @Column(name="ENDTIME")
-    private Date endTime;
+    private Timestamp endTime;
 
     public String getId() {
         return id;
@@ -31,19 +32,19 @@ public class Seat {
         this.seatNumber = seatNumber;
     }
 
-    public Date getStartTime() {
+    public Timestamp getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(Timestamp startTime) {
         this.startTime = startTime;
     }
 
-    public Date getEndTime() {
+    public Timestamp getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(Timestamp endTime) {
         this.endTime = endTime;
     }
 }
