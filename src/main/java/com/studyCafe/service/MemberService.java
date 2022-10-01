@@ -30,4 +30,5 @@ public class MemberService {
         System.out.println("ValidateMamber MemberId = " + member.getId());
         return list.isEmpty();
     }
+
 }

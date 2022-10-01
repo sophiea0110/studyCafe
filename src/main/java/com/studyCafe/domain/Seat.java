@@ -13,6 +13,17 @@ public class Seat {
     private long seatNumber;
     @Column(name="STARTTIME")
     private Timestamp startTime;
+
+    @Override
+    public String toString() {
+        return "Seat{" +
+                "id='" + id + '\'' +
+                ", seatNumber=" + seatNumber +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                '}';
+    }
+
     @Column(name="ENDTIME")
     private Timestamp endTime;
 

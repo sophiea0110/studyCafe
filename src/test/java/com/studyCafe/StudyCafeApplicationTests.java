@@ -44,7 +44,7 @@ class StudyCafeApplicationTests {
 		System.out.println(stampStart);
 		System.out.println(stampEnd);
 
-
+		/*
 		Seat seat = new Seat();
 		seat.setId("iii");
 		seat.setSeatNumber(9);
@@ -52,19 +52,16 @@ class StudyCafeApplicationTests {
 		seat.setEndTime(stampEnd);
 
 		seatService.saveSeat(seat);
-
+		*/
 	}
 
 	@Test
 	void 좌석조회(){
-		String MemberId = "ccc";
+		String MemberId = "aaa";
 		List<Seat> seat = seatService.findSeat(MemberId);
 
 		seat.stream().forEach( s -> {
-			System.out.println(s.getId());
-			System.out.println(s.getSeatNumber());
-			System.out.println(s.getStartTime());
-			System.out.println(s.getEndTime());
+			s.toString();
 		});
 
 	}
@@ -75,10 +72,10 @@ class StudyCafeApplicationTests {
 		member.setId("aaa");
 		member.setPw("123");
 		member.setEmail("aaa@aaa");
-		member.setTiket("null");
+		member.setTiket("twoHour");
+
+		System.out.println(member.toString());
 
 		memberService.join(member);
-
 	}
-
 }

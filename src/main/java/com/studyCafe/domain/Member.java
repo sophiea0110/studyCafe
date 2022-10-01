@@ -10,11 +10,27 @@ public class Member {
     private String email;
     private String tiket;
 
+    @Column(name="remainingtime")
+    private int remainingTime;
+
+    public int getRemainingTime() {
+        return remainingTime;
+    }
+
     public String getTiket() {
         return tiket;
     }
 
     public void setTiket(String tiket) {
+
+        if(tiket == "defaultHour"){
+            this.remainingTime = Tiket.defaultHour.getHour();
+        }else if(tiket == "twoHour"){
+            this.remainingTime = Tiket.twoHour.getHour();
+        }else if(tiket == "fourHour"){
+            this.remainingTime = Tiket.fourHour.getHour();
+        }
+
         this.tiket = tiket;
     }
 
@@ -40,5 +56,16 @@ public class Member {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "Member{" +
+                "id='" + id + '\'' +
+                ", pw='" + pw + '\'' +
+                ", email='" + email + '\'' +
+                ", tiket='" + tiket + '\'' +
+                ", remainingTime=" + remainingTime +
+                '}';
     }
 }
