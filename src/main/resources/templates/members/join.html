@@ -19,12 +19,19 @@
         <div class="join-title" id="join-title">회원 가입</div>
         <label class="join-item" for="id">아이디</label>
         <input class="join-item" type="text" id="id" name="id">
-        <input class="join-item" type="text" id="idcheck" style="display:none">
+        <input class="join-item" type="text" id="idCheck" style="display:none">
+
         <label class="join-item" for="pw">비밀번호</label>
-        <input class="join-item" type="password" id="pw" name="pw" onchange="pwCheck()">
+        <input class="join-item" type="password" id="pw" name="pw" onchange="pwcheck()">
         <label class="join-item" for="pw2">비밀번호 확인</label>
-        <input class="join-item" type="password" id="pw2" name="pw2" onchange="pwCheck()" onmouseout  ="pwCheck()">
-        <input class="join-item" type="text" id="pwcheck" style="display:none">
+
+        <input class="join-item" type="password" id="pw2" name="pw2" onchange="pwcheck()" onmouseout="pwcheck()">
+        <input class="join-item" type="text" id="pwCheck" style="display:none">
+
+        <label class="join-item" for="email">이메일</label>
+        <input class="join-item" type="text" id="email" name="email" onchange="emailcheck()">
+        <input class="join-item" type="text" id="emailCheck" style="display:none">
+
         <button type="submit" id="submit">확인</button>
     </form>
 </div>

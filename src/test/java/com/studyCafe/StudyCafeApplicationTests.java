@@ -12,9 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.transaction.Transactional;
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -41,8 +43,8 @@ class StudyCafeApplicationTests {
 		LocalDateTime localEnd = localStart.plusHours(4);
 		Timestamp stampEnd = Timestamp.valueOf(localEnd.format(form));
 
-		System.out.println(stampStart);
-		System.out.println(stampEnd);
+		//System.out.println(stampStart);
+		//System.out.println(stampEnd);
 
 		/*
 		Seat seat = new Seat();
@@ -53,6 +55,20 @@ class StudyCafeApplicationTests {
 
 		seatService.saveSeat(seat);
 		*/
+		DateTimeFormatter f = DateTimeFormatter.ofPattern("HH:MM:SS");
+		LocalDateTime a = LocalDateTime.of(2022, 10, 02,
+				22, 10, 55);
+		LocalDateTime b = LocalDateTime.of(2022, 10, 02,
+				22, 15, 54);
+
+		Duration duration = Duration.between(a, b);
+
+		System.out.println( duration.getSeconds() / 60);
+
+
+
+
+
 	}
 
 	@Test
@@ -69,10 +85,10 @@ class StudyCafeApplicationTests {
 	void 회원가입(){
 		Member member = new Member();
 
-		member.setId("aaa");
+		member.setId("bbb");
 		member.setPw("123");
-		member.setEmail("aaa@aaa");
-		member.setTiket("twoHour");
+		member.setEmail("bbb@bbb");
+		member.setTiket("defaultHour");
 
 		System.out.println(member.toString());
 

@@ -1,7 +1,7 @@
 package com.studyCafe.domain;
 
 public enum Tiket {
-    defaultHour(60),
+    defaultHour(0),
     twoHour(120),
     fourHour(240);
 

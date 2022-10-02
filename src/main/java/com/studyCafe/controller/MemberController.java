@@ -68,6 +68,7 @@ public class MemberController {
 
     @PostMapping(value = "members/new")
     public String create(Member member){
+        member.setTiket("twoHour");
         memberService.join(member);
         return "/members/login";
     }
