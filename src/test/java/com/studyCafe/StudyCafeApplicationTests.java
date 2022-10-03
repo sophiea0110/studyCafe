@@ -62,12 +62,8 @@ class StudyCafeApplicationTests {
 				22, 15, 54);
 
 		Duration duration = Duration.between(a, b);
-
-		System.out.println( duration.getSeconds() / 60);
-
-
-
-
+		System.out.println( duration.getSeconds());
+		System.out.println( (double) duration.getSeconds() / 60);
 
 	}
 
