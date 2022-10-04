@@ -60,7 +60,7 @@ class StudyCafeApplicationTests {
 		LocalDateTime localStart = stampStart.toLocalDateTime();
 		LocalDateTime localEnd = LocalDateTime.now();
 		Duration duration = Duration.between(localStart, localEnd);
-		Long remainingTime = duration.getSeconds() / 60;
+		Long remainingTime = Math.abs( (duration.getSeconds() / 60) - 4);
 
 		//System.out.println(duration.getSeconds());
 		System.out.println(duration.getSeconds() / 60 + "분");
