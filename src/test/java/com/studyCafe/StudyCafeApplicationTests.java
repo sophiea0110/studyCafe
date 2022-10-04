@@ -40,51 +40,53 @@ class StudyCafeApplicationTests {
 		LocalDateTime localStart = LocalDateTime.now();
 		Timestamp stampStart = Timestamp.valueOf(localStart.format(form));
 
-		LocalDateTime localEnd = localStart.plusHours(4);
-		Timestamp stampEnd = Timestamp.valueOf(localEnd.format(form));
-
-		//System.out.println(stampStart);
-		//System.out.println(stampEnd);
-
-		/*
 		Seat seat = new Seat();
-		seat.setId("iii");
-		seat.setSeatNumber(9);
+		seat.setId("ccc");
+		seat.setSeatNumber(2);
 		seat.setStartTime(stampStart);
-		seat.setEndTime(stampEnd);
 
 		seatService.saveSeat(seat);
-		*/
-		DateTimeFormatter f = DateTimeFormatter.ofPattern("HH:MM:SS");
-		LocalDateTime a = LocalDateTime.of(2022, 10, 02,
-				22, 10, 55);
-		LocalDateTime b = LocalDateTime.of(2022, 10, 02,
-				22, 15, 54);
 
-		Duration duration = Duration.between(a, b);
-		System.out.println( duration.getSeconds());
-		System.out.println( (double) duration.getSeconds() / 60);
+	}
+
+	@Test
+	void 좌석반납() throws ParseException {
+		//좌석 조회
+		String MemberId = "aaa";
+		Seat seat = seatService.findSeat(MemberId);
+
+		//사용시간 연산
+		Timestamp stampStart = seat.getStartTime();
+		LocalDateTime localStart = stampStart.toLocalDateTime();
+		LocalDateTime localEnd = LocalDateTime.now();
+		Duration duration = Duration.between(localStart, localEnd);
+		Long remainingTime = duration.getSeconds() / 60;
+
+		//System.out.println(duration.getSeconds());
+		System.out.println(duration.getSeconds() / 60 + "분");
+
+		//사용자 사용시간 DB 업데이트
+		memberService.remainingUpdate(MemberId, remainingTime);
+
 
 	}
 
 	@Test
 	void 좌석조회(){
-		String MemberId = "aaa";
-		List<Seat> seat = seatService.findSeat(MemberId);
+		String MemberId = "ccc";
+		Seat seat = seatService.findSeat(MemberId);
 
-		seat.stream().forEach( s -> {
-			s.toString();
-		});
+		System.out.println(seat.toString());
 
 	}
 	@Test
 	void 회원가입(){
 		Member member = new Member();
 
-		member.setId("bbb");
+		member.setId("ccc");
 		member.setPw("123");
-		member.setEmail("bbb@bbb");
-		member.setTiket("defaultHour");
+		member.setEmail("ccc@ccc");
+		member.setTiket("fourHour");
 
 		System.out.println(member.toString());
 

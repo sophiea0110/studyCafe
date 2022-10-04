@@ -14,19 +14,6 @@ public class Seat {
     @Column(name="STARTTIME")
     private Timestamp startTime;
 
-    @Override
-    public String toString() {
-        return "Seat{" +
-                "id='" + id + '\'' +
-                ", seatNumber=" + seatNumber +
-                ", startTime=" + startTime +
-                ", endTime=" + endTime +
-                '}';
-    }
-
-    @Column(name="ENDTIME")
-    private Timestamp endTime;
-
     public String getId() {
         return id;
     }
@@ -43,19 +30,20 @@ public class Seat {
         this.seatNumber = seatNumber;
     }
 
+    @Override
+    public String toString() {
+        return "Seat{" +
+                "id='" + id + '\'' +
+                ", seatNumber=" + seatNumber +
+                ", startTime=" + startTime +
+                '}';
+    }
+
     public Timestamp getStartTime() {
         return startTime;
     }
 
     public void setStartTime(Timestamp startTime) {
         this.startTime = startTime;
-    }
-
-    public Timestamp getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Timestamp endTime) {
-        this.endTime = endTime;
     }
 }

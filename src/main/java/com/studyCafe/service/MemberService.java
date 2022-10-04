@@ -31,4 +31,8 @@ public class MemberService {
         return list.isEmpty();
     }
 
+    public void remainingUpdate(String MemberId, Long remainingTime){
+        memberRepository.updateByRemaining(MemberId, remainingTime);
+    }
+
 }

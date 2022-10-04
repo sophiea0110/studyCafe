@@ -36,7 +36,7 @@ public class SeatController {
 
     @GetMapping(value = "seat/findSeat")
     @ResponseBody
-    public List<Seat> FindSeat(@RequestParam String MemberId){
+    public Seat FindSeat(@RequestParam String MemberId){
         //System.out.println("FindSeat MemberId = " + MemberId);
         return seatService.findSeat(MemberId);
     }

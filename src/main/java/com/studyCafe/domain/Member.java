@@ -11,9 +11,10 @@ public class Member {
     private String tiket;
 
     @Column(name="remainingtime")
-    private int remainingTime;
+    private long remainingTime;
 
-    public int getRemainingTime() {
+
+    public long getRemainingTime() {
         return remainingTime;
     }
 

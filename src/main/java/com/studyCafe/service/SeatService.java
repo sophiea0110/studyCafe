@@ -22,7 +22,7 @@ public class SeatService {
 
     public List<Member> AllcurrentSeat() { return seatRepository.AllSeat(); }
 
-    public List<Seat> findSeat(String MemberId) { return seatRepository.searchSeat(MemberId); }
+    public Seat findSeat(String MemberId) { return seatRepository.searchSeat(MemberId); }
 
     /*
     public int assignSeat(Member member){
