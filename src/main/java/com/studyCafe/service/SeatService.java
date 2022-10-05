@@ -28,9 +28,9 @@ public class SeatService {
     public int assignSeat(Member member){
         return seatRepository.updateBySeatNumber(member);
     }
-     */
+    */
 
-    public int returnSeat(Member member){
-        return seatRepository.initBySeatNumber(member);
+    public void returnSeat(String MemberId){
+        seatRepository.returnSeat(MemberId);
     }
 }

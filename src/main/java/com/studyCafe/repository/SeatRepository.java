@@ -13,4 +13,6 @@ public interface SeatRepository {
     public List<Member> AllSeat();
 
     public void save(Seat seat);
+
+    public void returnSeat(String MemberId);
 }

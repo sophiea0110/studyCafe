@@ -72,12 +72,12 @@ public class MemberController {
         memberService.join(member);
         return "/members/login";
     }
-
+    /*
     @GetMapping(value = "members/idCheck")
     @ResponseBody
     public Optional<Member> idCheck(Member member){
         System.out.println(member.getId());
         return memberService.validateDuplicateMember(member);
     }
-
+    */
 }

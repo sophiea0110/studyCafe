@@ -50,6 +50,12 @@ public class JpaSeatRepository implements SeatRepository{
     }
 
     @Override
+    public void returnSeat(String MemberId) {
+        Seat seat = em.find(Seat.class, MemberId);
+        em.remove(seat);
+    }
+
+    @Override
     public Seat searchSeat(String MemberId) {
         System.out.println(MemberId);
         Seat seat = em.createQuery("select m from Seat m where m.id = :id", Seat.class)

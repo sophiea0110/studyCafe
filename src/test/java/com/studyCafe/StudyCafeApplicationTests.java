@@ -35,15 +35,15 @@ class StudyCafeApplicationTests {
 	@Test
 	void 좌석선택() throws ParseException {
 
-		DateTimeFormatter form = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:MM:SS");
-
 		LocalDateTime localStart = LocalDateTime.now();
-		Timestamp stampStart = Timestamp.valueOf(localStart.format(form));
+		Timestamp stampStart = Timestamp.valueOf(LocalDateTime.now());
 
 		Seat seat = new Seat();
-		seat.setId("ccc");
-		seat.setSeatNumber(2);
+		seat.setId("aaa");
+		seat.setSeatNumber(1);
 		seat.setStartTime(stampStart);
+
+		System.out.println(seat.toString());
 
 		seatService.saveSeat(seat);
 
@@ -53,27 +53,33 @@ class StudyCafeApplicationTests {
 	void 좌석반납() throws ParseException {
 		//좌석 조회
 		String MemberId = "aaa";
+
 		Seat seat = seatService.findSeat(MemberId);
+		Member member =	memberService.validateDuplicateMember(MemberId);
 
 		//사용시간 연산
 		Timestamp stampStart = seat.getStartTime();
 		LocalDateTime localStart = stampStart.toLocalDateTime();
 		LocalDateTime localEnd = LocalDateTime.now();
+
 		Duration duration = Duration.between(localStart, localEnd);
-		Long remainingTime = Math.abs( (duration.getSeconds() / 60) - 4);
+		long betweenResult = duration.getSeconds() / 60;
+		long remainingTime = member.getRemainingTime() - betweenResult;
 
-		//System.out.println(duration.getSeconds());
-		System.out.println(duration.getSeconds() / 60 + "분");
 
-		//사용자 사용시간 DB 업데이트
+		System.out.println("현재시간 : " + LocalDateTime.now());
+		System.out.println("duration.getSeconds : " + duration.getSeconds() / 60 + "분");
+		System.out.println("remainingTime : " + remainingTime + " 분");
+
+		// 사용자 잔여 시간 업데이트
 		memberService.remainingUpdate(MemberId, remainingTime);
-
-
+		// 사용자가 반납할 시트 정보 제거
+		seatService.returnSeat(MemberId);
 	}
 
 	@Test
 	void 좌석조회(){
-		String MemberId = "ccc";
+		String MemberId = "aaa";
 		Seat seat = seatService.findSeat(MemberId);
 
 		System.out.println(seat.toString());
@@ -83,9 +89,9 @@ class StudyCafeApplicationTests {
 	void 회원가입(){
 		Member member = new Member();
 
-		member.setId("ccc");
+		member.setId("aaa");
 		member.setPw("123");
-		member.setEmail("ccc@ccc");
+		member.setEmail("aaa@aaa");
 		member.setTiket("fourHour");
 
 		System.out.println(member.toString());

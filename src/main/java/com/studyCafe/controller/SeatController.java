@@ -49,6 +49,7 @@ public class SeatController {
         return seatService.assignSeat(member);
     }
    */
+    /*
     @PostMapping(value = "seat/recover")
     @ResponseBody
     public int SeatRecover(Member member){
@@ -56,4 +57,6 @@ public class SeatController {
         //System.out.println("SeatRecover seatNumber : " + member.getSeatNumber());
         return seatService.returnSeat(member);
     }
+
+     */
 }

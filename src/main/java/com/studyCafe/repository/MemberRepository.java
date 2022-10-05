@@ -6,8 +6,9 @@ import java.util.Optional;
 
 public interface MemberRepository {
     public Member save(Member member);
-    public Optional<Member> findById(String name);
+    public Member findById(String name);
     public Optional<Member> findByMember(Member member);
 
     public void updateByRemaining(String MemberId, Long remainingTime);
+
 }

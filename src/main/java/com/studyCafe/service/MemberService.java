@@ -21,8 +21,8 @@ public class MemberService {
         return memberRepository.save(member);
     }
 
-    public Optional<Member> validateDuplicateMember(Member member) {
-        return memberRepository.findById(member.getId());
+    public Member validateDuplicateMember(String MemberId) {
+        return memberRepository.findById(MemberId);
     }
 
     public boolean validateMember(Member member){
