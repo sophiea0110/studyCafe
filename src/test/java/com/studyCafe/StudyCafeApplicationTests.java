@@ -35,14 +35,22 @@ class StudyCafeApplicationTests {
 	@Test
 	void 좌석선택() throws ParseException {
 
+		Member member = new Member();
+
+		member.setId("aaa");
+		member.setTiket("fourHour");
+
 		LocalDateTime localStart = LocalDateTime.now();
-		Timestamp stampStart = Timestamp.valueOf(LocalDateTime.now());
+		Timestamp stampStart = Timestamp.valueOf(localStart);
+
+		LocalDateTime localEnd = localStart.plusMinutes(member.getRemainingTime());
+		Timestamp stampEnd = Timestamp.valueOf(localEnd);
 
 		Seat seat = new Seat();
-		seat.setId("aaa");
+		seat.setId(member.getId());
 		seat.setSeatNumber(1);
 		seat.setStartTime(stampStart);
-
+		seat.setEndTime(stampEnd);
 		System.out.println(seat.toString());
 
 		seatService.saveSeat(seat);
@@ -52,7 +60,7 @@ class StudyCafeApplicationTests {
 	@Test
 	void 좌석반납() throws ParseException {
 		//좌석 조회
-		String MemberId = "aaa";
+		String MemberId = "ddd";
 
 		Seat seat = seatService.findSeat(MemberId);
 		Member member =	memberService.validateDuplicateMember(MemberId);
@@ -65,7 +73,6 @@ class StudyCafeApplicationTests {
 		Duration duration = Duration.between(localStart, localEnd);
 		long betweenResult = duration.getSeconds() / 60;
 		long remainingTime = member.getRemainingTime() - betweenResult;
-
 
 		System.out.println("현재시간 : " + LocalDateTime.now());
 		System.out.println("duration.getSeconds : " + duration.getSeconds() / 60 + "분");
