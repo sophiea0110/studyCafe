@@ -24,6 +24,4 @@ window.addEventListener("load", function(event) {
         }
         slides.animate( {left : position[currentPosition]}, 500)
     })
-
-
 })
