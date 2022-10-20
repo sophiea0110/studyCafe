@@ -60,7 +60,7 @@ class StudyCafeApplicationTests {
 	@Test
 	void 좌석반납() throws ParseException {
 		//좌석 조회
-		String MemberId = "ddd";
+		String MemberId = "aaa";
 
 		Seat seat = seatService.findSeat(MemberId);
 		Member member =	memberService.validateDuplicateMember(MemberId);
