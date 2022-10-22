@@ -8,32 +8,9 @@ public class Member {
     private String id;
     private String pw;
     private String email;
-    private String tiket;
 
     @Column(name="remainingtime")
     private long remainingTime;
-
-
-    public long getRemainingTime() {
-        return remainingTime;
-    }
-
-    public String getTiket() {
-        return tiket;
-    }
-
-    public void setTiket(String tiket) {
-
-        if(tiket == "defaultHour"){
-            this.remainingTime = Tiket.defaultHour.getHour();
-        }else if(tiket == "twoHour"){
-            this.remainingTime = Tiket.twoHour.getHour();
-        }else if(tiket == "fourHour"){
-            this.remainingTime = Tiket.fourHour.getHour();
-        }
-
-        this.tiket = tiket;
-    }
 
     public String getId() {
         return id;
@@ -59,13 +36,20 @@ public class Member {
         this.email = email;
     }
 
+    public long getRemainingTime() {
+        return remainingTime;
+    }
+
+    public void setRemainingTime(long remainingTime) {
+        this.remainingTime = remainingTime;
+    }
+
     @Override
     public String toString() {
         return "Member{" +
                 "id='" + id + '\'' +
                 ", pw='" + pw + '\'' +
                 ", email='" + email + '\'' +
-                ", tiket='" + tiket + '\'' +
                 ", remainingTime=" + remainingTime +
                 '}';
     }

@@ -41,10 +41,10 @@ public class JpaMemberRepository implements MemberRepository {
         return result.stream().findAny();
     }
 
-    public void updateByRemaining(String MemberId, Long remainingTime){
+    public void updateByRemaining(Member member){
         em.createQuery("update Member m set m.remainingTime = :remainingTime where m.id = :MemberId")
-                .setParameter("remainingTime", remainingTime)
-                .setParameter("MemberId", MemberId)
+                .setParameter("remainingTime", member.getRemainingTime())
+                .setParameter("MemberId", member.getId())
                 .executeUpdate();
     }
 

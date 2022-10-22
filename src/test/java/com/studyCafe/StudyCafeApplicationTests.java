@@ -28,17 +28,13 @@ import java.util.List;
 class StudyCafeApplicationTests {
 
 	@Autowired SeatService seatService;
-	@Autowired SeatRepository seatRepository;
 	@Autowired MemberService memberService;
-	@Autowired MemberRepository memberRepository;
 
 	@Test
-	void 좌석선택() throws ParseException {
+	void 좌석선택(){
 
-		Member member = new Member();
-
-		member.setId("aaa");
-		member.setTiket("fourHour");
+		String memberId = "aaa";
+		Member member = memberService.findMember(memberId);
 
 		LocalDateTime localStart = LocalDateTime.now();
 		Timestamp stampStart = Timestamp.valueOf(localStart);
@@ -51,6 +47,7 @@ class StudyCafeApplicationTests {
 		seat.setSeatNumber(1);
 		seat.setStartTime(stampStart);
 		seat.setEndTime(stampEnd);
+
 		System.out.println(seat.toString());
 
 		seatService.saveSeat(seat);
@@ -58,16 +55,17 @@ class StudyCafeApplicationTests {
 	}
 
 	@Test
-	void 좌석반납() throws ParseException {
+	void 좌석반납(){
 		//좌석 조회
 		String MemberId = "aaa";
+		Member member =	memberService.findMember(MemberId);
 
-		Seat seat = seatService.findSeat(MemberId);
-		Member member =	memberService.validateDuplicateMember(MemberId);
+		Seat seat = seatService.findSeat(member.getId());
 
 		//사용시간 연산
 		Timestamp stampStart = seat.getStartTime();
 		LocalDateTime localStart = stampStart.toLocalDateTime();
+
 		LocalDateTime localEnd = LocalDateTime.now();
 
 		Duration duration = Duration.between(localStart, localEnd);
@@ -78,20 +76,39 @@ class StudyCafeApplicationTests {
 		System.out.println("duration.getSeconds : " + duration.getSeconds() / 60 + "분");
 		System.out.println("remainingTime : " + remainingTime + " 분");
 
+		member.setRemainingTime(remainingTime);
+
 		// 사용자 잔여 시간 업데이트
-		memberService.remainingUpdate(MemberId, remainingTime);
+		memberService.remainingUpdate(member);
 		// 사용자가 반납할 시트 정보 제거
-		seatService.returnSeat(MemberId);
+		seatService.returnSeat(member.getId());
 	}
 
 	@Test
 	void 좌석조회(){
+
 		String MemberId = "aaa";
-		Seat seat = seatService.findSeat(MemberId);
+		Member member = memberService.findMember(MemberId);
+		Seat seat = seatService.findSeat(member.getId());
 
 		System.out.println(seat.toString());
 
 	}
+
+	@Test
+	void 시간추가(){
+		// 로그인한 아이디로 DB에 해당 아이디를 객체로 가져온다
+		String memberId = "aaa";
+		Member member = memberService.findMember(memberId);
+
+		// 객체의 remainingTime에 시간 추가
+		long remainingTime = 4;
+		member.setRemainingTime(remainingTime);
+
+		// 해당 튜플에 업데이트
+		memberService.remainingUpdate(member);
+	}
+
 	@Test
 	void 회원가입(){
 		Member member = new Member();
@@ -99,7 +116,6 @@ class StudyCafeApplicationTests {
 		member.setId("aaa");
 		member.setPw("123");
 		member.setEmail("aaa@aaa");
-		member.setTiket("fourHour");
 
 		System.out.println(member.toString());
 

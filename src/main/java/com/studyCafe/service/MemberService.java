@@ -21,7 +21,7 @@ public class MemberService {
         return memberRepository.save(member);
     }
 
-    public Member validateDuplicateMember(String MemberId) {
+    public Member findMember(String MemberId) {
         return memberRepository.findById(MemberId);
     }
 
@@ -31,8 +31,8 @@ public class MemberService {
         return list.isEmpty();
     }
 
-    public void remainingUpdate(String MemberId, Long remainingTime){
-        memberRepository.updateByRemaining(MemberId, remainingTime);
+    public void remainingUpdate(Member member){
+        memberRepository.updateByRemaining(member);
     }
 
 }

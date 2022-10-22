@@ -9,6 +9,6 @@ public interface MemberRepository {
     public Member findById(String name);
     public Optional<Member> findByMember(Member member);
 
-    public void updateByRemaining(String MemberId, Long remainingTime);
+    public void updateByRemaining(Member member);
 
 }
