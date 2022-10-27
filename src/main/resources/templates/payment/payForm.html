@@ -1,0 +1,34 @@
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultreq.net.nz/thymeleaf/layou"
+      layout:decorate="~{fragments/layout}">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+
+<th:block layout:fragment="css">
+  <link rel="stylesheet" th:href="@{/css/pay-style.css}" />
+</th:block>
+
+<th:block layout:fragment="script">
+  <script type="text/javascript" th:src="@{/js/pay.js}"></script>
+</th:block>
+<body layout:fragment="content">
+<input type="hidden"  id="MemberId" th:value="${session.MemberId}" />
+<div class="pay-page">
+  <div class="pay-list">
+    <label class="pay-label">1H</label>
+    <a class="pay-btn" th:href="@{/payment/addTime(MemberId=${session.MemberId}, minute=60)}">클릭</a>
+  </div>
+  <div class="pay-list">
+    <label class="pay-label">3H</label>
+    <a class="pay-btn" th:href="@{/payment/addTime(MemberId=${session.MemberId}, minute=180)}">클릭</a>
+  </div>
+  <div class="pay-list">
+    <label class="pay-label">5H</label>
+    <a class="pay-btn" th:href="@{/payment/addTime(MemberId=${session.MemberId}, minute=300)}">클릭</a>
+  </div>
+</div>
+</body>
+</html>

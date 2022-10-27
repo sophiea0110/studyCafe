@@ -15,4 +15,5 @@ public interface SeatRepository {
     public void save(Seat seat);
 
     public void returnSeat(String MemberId);
+    public void EndTimeUpdate(Member member);
 }

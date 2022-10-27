@@ -1,0 +1,41 @@
+.pay-page {
+    height: 700px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid darkgray;
+    border-radius: 30px;
+
+    margin-top: 10px;
+    margin-bottom: 10px
+}
+
+.pay-list {
+    display: flex;
+    flex-direction: column;
+    border : 1px solid darkgray;
+    width: 200px;
+    height: 400px;
+    margin : 30px
+}
+
+.pay-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex: 3;
+}
+
+.pay-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-top: 1px solid darkgray;
+    flex: 1;
+    margin : 0px;
+ }

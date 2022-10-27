@@ -33,4 +33,8 @@ public class SeatService {
     public void returnSeat(String MemberId){
         seatRepository.returnSeat(MemberId);
     }
+
+    public void addTimeAfterEndTimeUpdate(Member member){
+        seatRepository.EndTimeUpdate(member);
+    }
 }

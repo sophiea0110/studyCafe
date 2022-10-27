@@ -56,6 +56,14 @@ public class JpaSeatRepository implements SeatRepository{
     }
 
     @Override
+    public void EndTimeUpdate(Member member) {
+        int seat = em.createQuery("UPDATE Seat m SET m.endTime = :endTime where m.id = :id")
+                .setParameter("endTime", member.getRemainingTime())
+                .setParameter("id", member.getId())
+                .executeUpdate();
+    }
+
+    @Override
     public Seat searchSeat(String MemberId) {
         System.out.println(MemberId);
         Seat seat = em.createQuery("select m from Seat m where m.id = :id", Seat.class)

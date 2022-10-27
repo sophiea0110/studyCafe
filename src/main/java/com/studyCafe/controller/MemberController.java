@@ -3,6 +3,7 @@ package com.studyCafe.controller;
 
 import com.studyCafe.domain.Member;
 import com.studyCafe.service.MemberService;
+import com.studyCafe.service.SeatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,7 @@ import java.util.Optional;
 public class MemberController {
 
     private MemberService memberService;
+    private SeatService seatService;
 
     @Autowired
     public MemberController(MemberService memberService) {
