@@ -32,7 +32,7 @@ public class SpringConfig {
     }
 
     @Bean
-    public SeatService seatService() { return new SeatService(seatRepository()); }
+    public SeatService seatService() {  return new SeatService(seatRepository(), memberRepository());   }
 
     @Bean
     public SeatRepository seatRepository() { return new JpaSeatRepository(em); }

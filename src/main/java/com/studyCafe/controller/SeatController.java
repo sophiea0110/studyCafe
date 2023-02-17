@@ -2,7 +2,6 @@ package com.studyCafe.controller;
 
 import com.studyCafe.domain.Member;
 import com.studyCafe.domain.Seat;
-import com.studyCafe.service.MemberService;
 import com.studyCafe.service.SeatService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,33 +29,26 @@ public class SeatController {
 
     @GetMapping(value = "seat/AllfindSeat")
     @ResponseBody
-    public List<Member> AllfindSeat(){
+    public List<Seat> AllfindSeat(){
         return seatService.AllcurrentSeat();
     }
 
     @GetMapping(value = "seat/findSeat")
     @ResponseBody
-    public Seat FindSeat(@RequestParam String MemberId){
-        //System.out.println("FindSeat MemberId = " + MemberId);
+    public Optional<Seat> FindSeat(@RequestParam String MemberId){
         return seatService.findSeat(MemberId);
     }
-    /*
+
     @PostMapping(value = "seat/select")
     @ResponseBody
-    public int SeatChoice(Member member){
-        //System.out.println("SeatChoice id : " + member.getId());
-        //System.out.println("SeatChoice seatNumber : " + member.getSeatNumber());
-        return seatService.assignSeat(member);
-    }
-   */
-    /*
-    @PostMapping(value = "seat/recover")
-    @ResponseBody
-    public int SeatRecover(Member member){
-        //System.out.println("SeatRecover id : " + member.getId());
-        //System.out.println("SeatRecover seatNumber : " + member.getSeatNumber());
-        return seatService.returnSeat(member);
+    public Optional<Seat> SeatChoice(Seat seat){
+        return seatService.saveSeat(seat);
     }
 
-     */
+
+    @PostMapping(value = "seat/recover")
+    @ResponseBody
+    public Optional<Seat> SeatRecover(Seat seat){
+        return seatService.returnSeat(seat);
+    }
 }

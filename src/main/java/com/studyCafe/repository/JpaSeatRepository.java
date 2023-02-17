@@ -5,7 +5,9 @@ import com.studyCafe.domain.Seat;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class JpaSeatRepository implements SeatRepository{
@@ -33,8 +35,8 @@ public class JpaSeatRepository implements SeatRepository{
     }
 
     @Override
-    public List<Member> AllSeat() {
-        List<Member> result = em.createQuery("select m from Member m", Member.class)
+    public List<Seat> AllSeat() {
+        List<Seat> result = em.createQuery("select m from Seat m", Seat.class)
                 .getResultList();
     /*
         result.stream().forEach(e ->  {
@@ -45,14 +47,24 @@ public class JpaSeatRepository implements SeatRepository{
     }
 
     @Override
-    public void save(Seat seat) {
+    public Optional<Seat> save(Seat seat) {
         em.persist(seat);
+        List<Seat> resultList = em.createQuery("select m from Seat m where m.id = :id", Seat.class)
+                .setParameter("id", seat.getId())
+                .getResultList();
+        System.out.println("seat value = " + seat);
+        return resultList.stream().findAny();
+
     }
 
     @Override
-    public void returnSeat(String MemberId) {
-        Seat seat = em.find(Seat.class, MemberId);
+    public Optional<Seat> returnSeat(Seat seat) {
         em.remove(seat);
+        List<Seat> resultList = em.createQuery("select m from Seat m where m.id = :id", Seat.class)
+                .setParameter("id", seat.getId())
+                .getResultList();
+        System.out.println("seat value = " + seat);
+        return resultList.stream().findAny();
     }
 
     @Override
@@ -64,11 +76,12 @@ public class JpaSeatRepository implements SeatRepository{
     }
 
     @Override
-    public Seat searchSeat(String MemberId) {
-        System.out.println(MemberId);
-        Seat seat = em.createQuery("select m from Seat m where m.id = :id", Seat.class)
+    public Optional<Seat> searchSeat(String MemberId) throws NoResultException{
+        System.out.println("searchSeat id = " + MemberId);
+        List<Seat> seat = em.createQuery("select m from Seat m where m.id = :id", Seat.class)
                 .setParameter("id", MemberId)
-                .getSingleResult();
-        return seat;
+                .getResultList();
+        System.out.println("seat value = " + seat);
+        return seat.stream().findAny();
     }
 }

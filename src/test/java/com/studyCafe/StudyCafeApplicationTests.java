@@ -23,6 +23,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @SpringBootTest
 class StudyCafeApplicationTests {
@@ -60,10 +61,9 @@ class StudyCafeApplicationTests {
 		String MemberId = "aaa";
 		Member member =	memberService.findMember(MemberId);
 
-		Seat seat = seatService.findSeat(member.getId());
-
+		Optional<Seat> seat = seatService.findSeat(member.getId());
 		//사용시간 연산
-		Timestamp stampStart = seat.getStartTime();
+		Timestamp stampStart = seat.get().getStartTime();
 		LocalDateTime localStart = stampStart.toLocalDateTime();
 
 		LocalDateTime localEnd = LocalDateTime.now();
@@ -89,7 +89,7 @@ class StudyCafeApplicationTests {
 
 		String MemberId = "aaa";
 		Member member = memberService.findMember(MemberId);
-		Seat seat = seatService.findSeat(member.getId());
+		Optional<Seat> seat = seatService.findSeat(member.getId());
 
 		System.out.println(seat.toString());
 
@@ -121,4 +121,5 @@ class StudyCafeApplicationTests {
 
 		memberService.join(member);
 	}
+
 }

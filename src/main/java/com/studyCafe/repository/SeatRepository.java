@@ -4,16 +4,17 @@ import com.studyCafe.domain.Member;
 import com.studyCafe.domain.Seat;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface SeatRepository {
 
-    public Seat searchSeat(String MemberId);
+    public Optional<Seat> searchSeat(String MemberId);
     //public int updateBySeatNumber(Member member);
     public int initBySeatNumber(Member member);
-    public List<Member> AllSeat();
+    public List<Seat> AllSeat();
 
-    public void save(Seat seat);
+    public Optional<Seat> save(Seat seat);
 
-    public void returnSeat(String MemberId);
+    public Optional<Seat> returnSeat(Seat seat);
     public void EndTimeUpdate(Member member);
 }

@@ -60,6 +60,7 @@ function selectMemberSeat(e, MemberId){
 // 0 아닌 1~10까지 숫자를 반환
 function findMeberSeat(MemberId){
     let result;
+    console.log(MemberId.value)
     $.ajax({
         type: "GET",
          url: "/seat/findSeat",
@@ -73,7 +74,13 @@ function findMeberSeat(MemberId){
             console.log('통신 에러');
          }
     })
-    return result;
+    if(result != null){
+        console.log(result)
+        return result.seatNumber;
+    }
+    else
+        return 0;
+    //return result.seatNumber;
 }
 
 // 좌석 반납(recoverSeat)
@@ -112,7 +119,9 @@ function allStateSeat(){
             url: "/seat/AllfindSeat",
             async: false,
             success : function(data){
+                console.log(data)
                 result = data.filter( f => f.seatNumber != 0)
+                console.log(result)
                 console.log('통신 성공');
             },
             error: function(){
