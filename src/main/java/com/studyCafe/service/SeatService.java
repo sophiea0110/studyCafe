@@ -46,7 +46,7 @@ public class SeatService {
     public Optional<Seat> returnSeat(Seat seat){
 
         Member member = memberRepository.findById(seat.getId());
-        Optional<Seat> seat = seatService.findSeat(seat.getId());
+        //Optional<Seat> seat = seatService.findSeat(seat.getId());
 
         Timestamp stampStart = seat.getStartTime();
 
