@@ -29,10 +29,10 @@
 #### 📌 메인 페이지
 ![메인화면](https://user-images.githubusercontent.com/65578374/219964744-726ff627-0929-49ca-9d09-4b3671b874d1.JPG)
 
-### 📌 좌석 관리
+#### 📌 좌석 관리
 ![좌석현황](https://user-images.githubusercontent.com/65578374/219968121-119abde4-5a4c-4cb3-8107-ceccf42f9a8f.JPG)
 
-### 📌 시간(요금) 결제
+#### 📌 시간(요금) 결제
 ![시간관리](https://user-images.githubusercontent.com/65578374/219968175-29c78f84-c387-4d2e-ac28-da942bfbb636.JPG)
 
 #### 📌 게시판
