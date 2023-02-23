@@ -34,7 +34,7 @@ class StudyCafeApplicationTests {
 	@Test
 	void 좌석선택(){
 
-		String memberId = "aaa";
+		String memberId = "ccc";
 		Member member = memberService.findMember(memberId);
 
 		LocalDateTime localStart = LocalDateTime.now();
@@ -58,18 +58,24 @@ class StudyCafeApplicationTests {
 	@Test
 	void 좌석반납(){
 		//좌석 조회
-		String MemberId = "aaa";
+		String MemberId = "ccc";
 		Member member =	memberService.findMember(MemberId);
 
 		Optional<Seat> seat = seatService.findSeat(member.getId());
+		System.out.println("seat info = " + seat.toString());
 		//사용시간 연산
 		Timestamp stampStart = seat.get().getStartTime();
+		System.out.println(stampStart);
 		LocalDateTime localStart = stampStart.toLocalDateTime();
+		System.out.println(localStart);
 
 		LocalDateTime localEnd = LocalDateTime.now();
 
 		Duration duration = Duration.between(localStart, localEnd);
+		System.out.println(duration);
 		long betweenResult = duration.getSeconds() / 60;
+		System.out.println(betweenResult);
+
 		long remainingTime = member.getRemainingTime() - betweenResult;
 
 		System.out.println("현재시간 : " + LocalDateTime.now());
@@ -81,7 +87,7 @@ class StudyCafeApplicationTests {
 		// 사용자 잔여 시간 업데이트
 		memberService.remainingUpdate(member);
 		// 사용자가 반납할 시트 정보 제거
-		seatService.returnSeat(member.getId());
+		seatService.returnSeat(seat.get());
 	}
 
 	@Test
@@ -98,7 +104,7 @@ class StudyCafeApplicationTests {
 	@Test
 	void 시간추가(){
 		// 로그인한 아이디로 DB에 해당 아이디를 객체로 가져온다
-		String memberId = "aaa";
+		String memberId = "ccc";
 		Member member = memberService.findMember(memberId);
 
 		// 객체의 remainingTime에 시간 추가
@@ -113,9 +119,9 @@ class StudyCafeApplicationTests {
 	void 회원가입(){
 		Member member = new Member();
 
-		member.setId("aaa");
+		member.setId("ccc");
 		member.setPw("123");
-		member.setEmail("aaa@aaa");
+		member.setEmail("ccc@ccc");
 
 		System.out.println(member.toString());
 

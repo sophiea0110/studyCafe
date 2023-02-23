@@ -41,9 +41,9 @@ public class PayController {
         System.out.println("시간(원래시간 + 추가시간) : " + member.getRemainingTime());
 
         memberService.remainingUpdate(member);
-        Optional<Seat> seat = seatService.findSeat(member.getId());
+        //Optional<Seat> seat = seatService.findSeat(member.getId());
 
-        System.out.println(seat.getClass());
+        //System.out.println(seat.getClass());
 
 
         //seatService.addTimeAfterEndTimeUpdate(member);

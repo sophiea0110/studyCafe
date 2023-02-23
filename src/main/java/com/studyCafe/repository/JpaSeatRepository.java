@@ -5,7 +5,6 @@ import com.studyCafe.domain.Seat;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,22 +48,25 @@ public class JpaSeatRepository implements SeatRepository{
     @Override
     public Optional<Seat> save(Seat seat) {
         em.persist(seat);
-        List<Seat> resultList = em.createQuery("select m from Seat m where m.id = :id", Seat.class)
-                .setParameter("id", seat.getId())
-                .getResultList();
-        System.out.println("seat value = " + seat);
-        return resultList.stream().findAny();
+        return Optional.ofNullable(seat);
 
     }
 
+
     @Override
     public Optional<Seat> returnSeat(Seat seat) {
-        em.remove(seat);
+        Seat findSeat = em.find(Seat.class, seat.getId());
+        em.remove(findSeat);
+        /*
         List<Seat> resultList = em.createQuery("select m from Seat m where m.id = :id", Seat.class)
                 .setParameter("id", seat.getId())
                 .getResultList();
+        System.out.println(resultList);
         System.out.println("seat value = " + seat);
-        return resultList.stream().findAny();
+        */
+        return Optional.ofNullable(findSeat);
+
+
     }
 
     @Override
@@ -76,12 +78,18 @@ public class JpaSeatRepository implements SeatRepository{
     }
 
     @Override
-    public Optional<Seat> searchSeat(String MemberId) throws NoResultException{
+    public Optional<Seat> searchSeat(String MemberId) {
         System.out.println("searchSeat id = " + MemberId);
-        List<Seat> seat = em.createQuery("select m from Seat m where m.id = :id", Seat.class)
-                .setParameter("id", MemberId)
-                .getResultList();
-        System.out.println("seat value = " + seat);
+        List<Seat> seat = null;
+        try {
+            seat = em.createQuery("select m from Seat m where m.id = :id", Seat.class)
+                    .setParameter("id", MemberId)
+                    .getResultList();
+            System.out.println("seat value = " + seat);
+
+        } catch (Exception e) {
+            System.out.println("error msg = " + e);
+        }
         return seat.stream().findAny();
     }
 }

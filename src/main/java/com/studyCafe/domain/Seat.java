@@ -6,11 +6,11 @@ import java.sql.Timestamp;
 public class Seat {
     @Id
     private String id;
-    @Column(name="SEATNUMBER")
+    @Column(name = "SEATNUMBER")
     private long seatNumber;
-    @Column(name="STARTTIME")
+    @Column(name = "STARTTIME")
     private Timestamp startTime;
-    @Column(name="ENDTIME")
+    @Column(name = "ENDTIME")
     private Timestamp endTime;
 
     public String getId() {
