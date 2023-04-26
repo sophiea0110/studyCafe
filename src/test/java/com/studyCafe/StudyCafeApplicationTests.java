@@ -87,13 +87,13 @@ class StudyCafeApplicationTests {
 		// 사용자 잔여 시간 업데이트
 		memberService.remainingUpdate(member);
 		// 사용자가 반납할 시트 정보 제거
-		seatService.returnSeat(seat.get());
+		seatService.returnSeat(seat);
 	}
 
 	@Test
 	void 좌석조회(){
 
-		String MemberId = "aaa";
+		String MemberId = "ccc";
 		Member member = memberService.findMember(MemberId);
 		Optional<Seat> seat = seatService.findSeat(member.getId());
 
@@ -109,7 +109,7 @@ class StudyCafeApplicationTests {
 
 		// 객체의 remainingTime에 시간 추가
 		long remainingTime = 4;
-		member.setRemainingTime(remainingTime);
+		member.setRemainingTime(member.getRemainingTime() + remainingTime);
 
 		// 해당 튜플에 업데이트
 		memberService.remainingUpdate(member);

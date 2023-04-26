@@ -48,6 +48,7 @@ public class SeatController {
     @PostMapping(value = "seat/recover")
     @ResponseBody
     public Optional<Seat> SeatRecover(Seat seat){
-        return seatService.returnSeat(seat);
+        System.out.println("Controller seat StartTime value = " + seat.getStartTime());
+        return seatService.returnSeat(Optional.of(seat));
     }
 }

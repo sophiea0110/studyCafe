@@ -18,7 +18,6 @@ public class SeatService {
     private SeatRepository seatRepository;
     private MemberRepository memberRepository;
 
-
     public SeatService(SeatRepository seatRepository, MemberRepository memberRepository) {
         this.seatRepository = seatRepository;
         this.memberRepository = memberRepository;
@@ -29,10 +28,15 @@ public class SeatService {
 
         LocalDateTime localStart = LocalDateTime.now();
         Timestamp stampStart = Timestamp.valueOf(localStart);
+        //
+        System.out.println("start time = " + stampStart);
 
         LocalDateTime localEnd = localStart.plusMinutes(member.getRemainingTime());
+        //
+        System.out.println("local End = " + stampStart);
         Timestamp stampEnd = Timestamp.valueOf(localEnd);
-
+        //
+        System.out.println("end time = " + stampEnd);
         seat.setStartTime(stampStart);
         seat.setEndTime(stampEnd);
 
@@ -43,12 +47,16 @@ public class SeatService {
 
     public Optional<Seat> findSeat(String MemberId) { return seatRepository.searchSeat(MemberId); }
 
-    public Optional<Seat> returnSeat(Seat seat){
+    public Optional<Seat> returnSeat(Optional<Seat> seat){
 
-        Member member = memberRepository.findById(seat.getId());
-        //Optional<Seat> seat = seatService.findSeat(seat.getId());
+        Member member = memberRepository.findById(seat.get().getId());
+        seat = seatRepository.searchSeat(seat.get().getId());
 
-        Timestamp stampStart = seat.getStartTime();
+        System.out.println("Seat Info : " + seat.get().toString());
+        Timestamp stampStart = seat.get().getStartTime();
+
+        System.out.println("stampStart toLocalDateTime = " + stampStart);
+        System.out.println("stampStart toLocalDateTime = " + stampStart.toLocalDateTime());
 
         LocalDateTime localStart = stampStart.toLocalDateTime();
         LocalDateTime localEnd = LocalDateTime.now();
@@ -63,7 +71,7 @@ public class SeatService {
         // 사용자 잔여 시간 업데이트
         memberRepository.updateByRemaining(member);
         // 사용자가 반납할 시트 정보 제거
-        return seatRepository.returnSeat(seat);
+        return seatRepository.returnSeat(seat.get());
     }
 
     public void addTimeAfterEndTimeUpdate(Member member){

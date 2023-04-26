@@ -32,7 +32,7 @@ public class PayController {
 
     @GetMapping("payment/addTime")
     public String addTime(@RequestParam("MemberId") String MemberId,
-                          @RequestParam("minute") Long minute) {
+                          @RequestParam("minute") long minute) {
 
         Member member = memberService.findMember(MemberId);
         member.setRemainingTime(member.getRemainingTime() + minute);
