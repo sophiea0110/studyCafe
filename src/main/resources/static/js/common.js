@@ -9,7 +9,7 @@ async function seatEndTime() {
     const promise = new Promise((resolve) => {
         setTimeout(() => {
             resolve('success')
-         }, 1000);
+         }, 60000);
     });
 
     promise.then(() => {
@@ -19,12 +19,12 @@ async function seatEndTime() {
                     async: true,
                     success : function(data){
                         console.log('통신 성공');
+                        location.reload()
                     },
                     error: function(){
                         console.log('통신 에러');
                     }
             })
     })
-    location.reload()
 }
 
