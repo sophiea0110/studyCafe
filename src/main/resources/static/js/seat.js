@@ -6,21 +6,24 @@
 // 로그인 상태를 확인 하고 사용중인 좌석 div 사용자 ID와 로그인된 ID 상태가 같으면 반납
 // 좌석 DIV태그 value가 없고 로그인된 상태이면 좌석 선택
 window.addEventListener("load", function(event) {
-    let MemberId = document.getElementById("MemberId");
-    let seats = document.querySelectorAll("#seat")
-    let seatByState = allStateSeat().filter( f => f.seatNumber != 0)
-    // DB에 저장된 현재 사용중인 전좌석 정보를 가져온다
 
-    console.log(seatByState)
-    /*
-        1 : {
-                id : 'aaa',
-                pw : '111',
-                seatNumber : 1
-            }
-    */
-    addEventSeat(seats, seatByState, MemberId)
-    seatBoard(seats, seatByState, MemberId)
+        let MemberId = document.getElementById("MemberId");
+        let seats = document.querySelectorAll("#seat")
+
+        let seatByState = allStateSeat().filter( f => f.seatNumber != 0)
+                    // DB에 저장된 현재 사용중인 전좌석 정보를 가져온다
+
+        console.log(seatByState)
+                    /*
+                        1 : {
+                                id : 'aaa',
+                                pw : '111',
+                                seatNumber : 1
+                            }
+                    */
+        addEventSeat(seats, seatByState, MemberId)
+        seatBoard(seats, seatByState, MemberId)
+
 })
 
 // 좌석 선택(selectMemberSeat)
@@ -54,6 +57,7 @@ function selectMemberSeat(e, MemberId){
             })
         }  else    alert(MemberId.value + "님은 현재 " + aleadyUseSeat + " 번 좌석 사용중입니다." );
     }   else   alert("로그인 상태를 확인하세요!");
+    location.reload()
 }
 
 // 사용자가 이미 좌석이 있으면 해당 좌석 번호을 가져온다.
@@ -107,6 +111,7 @@ function recoverSeat(e, MemberId){
             })
         }else   alert("권한이 없습니다!");
     } else  alert("로그인 상태를 확인하세요!");
+    location.reload()
 }
 
 // DB에 저장된 현재 사용중인 전좌석 정보를 가져온다

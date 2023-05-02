@@ -5,6 +5,10 @@ import com.studyCafe.domain.Seat;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import java.sql.Timestamp;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.temporal.Temporal;
 import java.util.List;
 import java.util.Optional;
 
@@ -91,5 +95,31 @@ public class JpaSeatRepository implements SeatRepository{
             System.out.println("error msg = " + e);
         }
         return seat.stream().findAny();
+    }
+
+    @Override
+    public String seatEndTimeCheck() {
+        List<Seat> tempSeat = em.createQuery("select m from Seat m ", Seat.class)
+                .getResultList();
+        tempSeat.stream().forEach( e -> {
+            LocalDateTime currentTime = LocalDateTime.now();
+            LocalDateTime endTime = e.getEndTime().toLocalDateTime();
+            //System.out.println(currentTime);
+            //System.out.println(endTime);
+            Duration duration = Duration.between(currentTime, endTime);
+            //System.out.println(e);
+            //System.out.println("duration = " + duration.getSeconds() / 60);
+            long resultTime = duration.getSeconds() / 60;
+            //System.out.println(resultTime);
+            if(resultTime <= 0 ){
+                System.out.println("이용시간 완료되었습니다.");
+                returnSeat(e);
+                em.createQuery("update Member m set m.remainingTime = 0 where m.id = :id")
+                        .setParameter("id", e.getId())
+                        .executeUpdate();
+            }
+        });
+
+        return null;
     }
 }

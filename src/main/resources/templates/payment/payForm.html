@@ -18,16 +18,16 @@
 <input type="hidden"  id="MemberId" th:value="${session.MemberId}" />
 <div class="pay-page">
   <div class="pay-list">
-    <label class="pay-label">1H</label>
-    <a class="pay-btn" th:href="@{/payment/addTime(MemberId=${session.MemberId}, minute=60)}">클릭</a>
+    <label class="pay-label">2분</label>
+    <a class="pay-btn" th:href="@{/payment/addTime(MemberId=${session.MemberId}, minute=2)}">클릭</a>
   </div>
   <div class="pay-list">
-    <label class="pay-label">3H</label>
-    <a class="pay-btn" th:href="@{/payment/addTime(MemberId=${session.MemberId}, minute=180)}">클릭</a>
+    <label class="pay-label">3분</label>
+    <a class="pay-btn" th:href="@{/payment/addTime(MemberId=${session.MemberId}, minute=3)}">클릭</a>
   </div>
   <div class="pay-list">
-    <label class="pay-label">5H</label>
-    <a class="pay-btn" th:href="@{/payment/addTime(MemberId=${session.MemberId}, minute=300)}">클릭</a>
+    <label class="pay-label">4분</label>
+    <a class="pay-btn" th:href="@{/payment/addTime(MemberId=${session.MemberId}, minute=4)}">클릭</a>
   </div>
 </div>
 </body>

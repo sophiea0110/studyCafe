@@ -17,4 +17,6 @@ public interface SeatRepository {
 
     public Optional<Seat> returnSeat(Seat seat);
     public void EndTimeUpdate(Member member);
+
+    public String seatEndTimeCheck();
 }

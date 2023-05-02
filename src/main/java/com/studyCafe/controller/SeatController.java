@@ -51,4 +51,11 @@ public class SeatController {
         System.out.println("Controller seat StartTime value = " + seat.getStartTime());
         return seatService.returnSeat(Optional.of(seat));
     }
+
+    @PostMapping(value = "seat/EndTimeCheck")
+    @ResponseBody
+    public String seatEndTimeCheck(){
+        //System.out.println("Controller seatEndTimeCheck");
+        return seatService.realTimeCheck();
+    }
 }

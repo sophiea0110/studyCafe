@@ -77,4 +77,8 @@ public class SeatService {
     public void addTimeAfterEndTimeUpdate(Member member){
         seatRepository.EndTimeUpdate(member);
     }
+
+    public String realTimeCheck() {
+        return seatRepository.seatEndTimeCheck();
+    }
 }
