@@ -26,9 +26,15 @@ public class JpaMemberRepository implements MemberRepository {
 
     @Override
     public Member findById(String id) {
-        Member result = em.createQuery("select m from Member m where m.id = :id", Member.class)
-                .setParameter("id", id)
-                .getSingleResult();
+        Member result;
+        try {
+            result = em.createQuery("select m from Member m where m.id = :id", Member.class)
+                    .setParameter("id", id)
+                    .getSingleResult();
+        }catch (Exception e){
+            System.out.println("mes = " + e);
+            result = null;
+        }
         System.out.println("findById result = " + result);
         return result;
     }

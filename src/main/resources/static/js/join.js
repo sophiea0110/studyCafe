@@ -23,10 +23,11 @@ function idCheck(e){
 
     if(e.key == "Tab" || e.type == "blur" & id.value != ""){
         $.ajax({
-            type: "GET",
+            type: "post",
             url: "/members/idCheck",
-            data: { "id" : id.value },
-            success : function(data){
+            async: false,
+            data: { "MemberId" : id.value },
+            success: function(data){
                 console.log(data)
                 console.log('통신 성공');
                 if(data != null){
@@ -36,7 +37,7 @@ function idCheck(e){
                     idCheck.style.border = "none"
                     id.value = ''
                 }
-                else if(data == null){
+                else{
                     idCheck.value = "사용 가능한 아이디 입니다."
                     idCheck.style.color = "green"
                     idCheck.style.display = "block";

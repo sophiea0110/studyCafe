@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Optional;
 
 @Controller
 public class MemberController {
@@ -39,13 +40,11 @@ public class MemberController {
         return "redirect:/";
     }
 
-    @GetMapping(value = "members/idCheck")
-
-    @PostMapping(value = "members/MemberIdToRemaingTimeCheck")
+    @PostMapping(value = "members/idCheck")
     @ResponseBody
-    public boolean idCheck(Member member) {
-        System.out.println(member.getId());
-        return memberService.validateMember(member);
+    public Optional<Member> idCheck(String MemberId) {
+        System.out.println(MemberId);
+        return Optional.ofNullable(memberService.findMember(MemberId));
     }
 
     @PostMapping(value = "members/login")

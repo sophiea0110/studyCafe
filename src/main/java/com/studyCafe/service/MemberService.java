@@ -22,12 +22,14 @@ public class MemberService {
     }
 
     public Member findMember(String MemberId) {
-        return memberRepository.findById(MemberId);
+       return memberRepository.findById(MemberId);
     }
 
     public boolean validateMember(Member member){
         Optional<Member> list = memberRepository.findByMember(member);
         System.out.println("ValidateMamber MemberId = " + member.getId());
+        System.out.println(list);
+        System.out.println(list.isEmpty());
         return list.isEmpty();
     }
 
