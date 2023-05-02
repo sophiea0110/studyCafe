@@ -29,6 +29,7 @@ public class JpaMemberRepository implements MemberRepository {
         Member result = em.createQuery("select m from Member m where m.id = :id", Member.class)
                 .setParameter("id", id)
                 .getSingleResult();
+        System.out.println("findById result = " + result);
         return result;
     }
 
@@ -48,4 +49,12 @@ public class JpaMemberRepository implements MemberRepository {
                 .executeUpdate();
     }
 
+    /*
+    @Override
+    public Optional<Member> findByRemaingTime(Member member) {
+        Member result = em.createQuery("select m from Member m where m.id = :id", Member.class)
+        return
+    }
+
+     */
 }

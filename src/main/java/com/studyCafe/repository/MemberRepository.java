@@ -10,5 +10,4 @@ public interface MemberRepository {
     public Optional<Member> findByMember(Member member);
 
     public void updateByRemaining(Member member);
-
 }

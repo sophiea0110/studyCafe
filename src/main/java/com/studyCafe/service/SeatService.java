@@ -78,7 +78,7 @@ public class SeatService {
         seatRepository.EndTimeUpdate(member);
     }
 
-    public String realTimeCheck() {
-        return seatRepository.seatEndTimeCheck();
+    public void realTimeCheck() {
+        seatRepository.seatEndTimeCheck();
     }
 }

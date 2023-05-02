@@ -94,11 +94,12 @@ public class JpaSeatRepository implements SeatRepository{
         } catch (Exception e) {
             System.out.println("error msg = " + e);
         }
+        System.out.println(" searchSeat value = " + seat);
         return seat.stream().findAny();
     }
 
     @Override
-    public String seatEndTimeCheck() {
+    public void seatEndTimeCheck() {
         List<Seat> tempSeat = em.createQuery("select m from Seat m ", Seat.class)
                 .getResultList();
         tempSeat.stream().forEach( e -> {
@@ -119,7 +120,5 @@ public class JpaSeatRepository implements SeatRepository{
                         .executeUpdate();
             }
         });
-
-        return null;
     }
 }

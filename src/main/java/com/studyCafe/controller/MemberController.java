@@ -73,13 +73,14 @@ public class MemberController {
         memberService.join(member);
         return "/members/login";
     }
-    /*
-    @GetMapping(value = "members/idCheck")
+
+    @PostMapping(value = "members/MemberIdToRemaingTimeCheck")
     @ResponseBody
-    public Optional<Member> idCheck(Member member){
-        System.out.println(member.getId());
-        return memberService.validateDuplicateMember(member);
+    public Member MemberIdToRemaingTimeCheck(Member member){
+        Member tempMember = memberService.findMember(member.getId());
+        System.out.println(("MemberIdToRemaingTimeCheck = " + member.getId()));
+        System.out.println(tempMember.toString());
+        return tempMember;
     }
-    */
 
 }

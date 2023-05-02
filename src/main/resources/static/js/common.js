@@ -16,7 +16,7 @@ async function seatEndTime() {
         $.ajax({
                     type: "post",
                     url: "/seat/EndTimeCheck",
-                    async: true,
+                    async: false,
                     success : function(data){
                         console.log('통신 성공');
                         location.reload()

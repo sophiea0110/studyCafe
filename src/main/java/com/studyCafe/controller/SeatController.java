@@ -54,8 +54,8 @@ public class SeatController {
 
     @PostMapping(value = "seat/EndTimeCheck")
     @ResponseBody
-    public String seatEndTimeCheck(){
+    public void seatEndTimeCheck(){
         //System.out.println("Controller seatEndTimeCheck");
-        return seatService.realTimeCheck();
+         seatService.realTimeCheck();
     }
 }
