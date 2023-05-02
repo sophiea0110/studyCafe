@@ -23,6 +23,10 @@
 
 + ``` Junit 5.6.2 ```
 
+## 자료 흐름도
+
+![DFD](https://user-images.githubusercontent.com/65578374/235663073-ac8a7d0c-0f69-480b-bf78-ccc4a47f3314.jpg)
+
 ## 웹페이지 구현
 
 #### 📌 메인 화면
