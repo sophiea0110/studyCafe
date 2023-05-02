@@ -38,4 +38,5 @@ public class MemberService {
     public Member RemainingTimeCheck(Member member) {
         return memberRepository.findById(member.getId());
     }
+
 }

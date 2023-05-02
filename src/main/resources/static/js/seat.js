@@ -24,11 +24,13 @@ window.addEventListener("load", function(event) {
         addEventSeat(seats, seatByState, MemberId)
         seatBoard(seats, seatByState, MemberId)
 
+        let member = findMemberSeat(MemberId)
+
 })
 
 // 좌석 선택(selectMemberSeat)
-// user 로그인 상태 및 user 이미 다른 좌석이 있는지 학인 (findMeberSeat)
-// selectMemberSeat -> findMeberSeat -> selectMemberSeat
+// user 로그인 상태 및 user 이미 다른 좌석이 있는지 학인 (findMemberSeat)
+// selectMemberSeat -> findMemberSeat -> selectMemberSeat
 // DB에 MemberId와 선택한 좌석번호를 저장
 // 해당 좌석 번호 태그에 value에 사용자ID 와 사용중(빨간색) 표시
 function selectMemberSeat(e, MemberId){
@@ -41,10 +43,12 @@ function selectMemberSeat(e, MemberId){
     //4. aleadyUseSeat가 0이 아닌 다른 번호가 있을시 사용자가 사용중인 좌석 번호 출력
     if(MemberId.value.length != 0){
         let member = findMemberRemaingTime(MemberId)
-        console.log(member)
-        console.log(typeof member.remainingTime)
+        console.log(e)
+        //console.log(member)
+        //console.log(typeof member.remainingTime)
         if(member.remainingTime != 0){
-            let aleadyUseSeat = findMeberSeat(MemberId)
+            let aleadyUseSeat = findMemberSeat(MemberId)
+            console.log(aleadyUseSeat)
             let check = confirm(e.textContent + " 번 좌석을 선택 하시겠습니까?")
             if(aleadyUseSeat == 0 & check == true){
                 $.ajax({
@@ -59,7 +63,7 @@ function selectMemberSeat(e, MemberId){
                         console.log('통신 에러');
                     }
                 })
-            }  else    alert(MemberId.value + "님은 현재 " + aleadyUseSeat + " 번 좌석 사용중입니다." );
+            }  else    alert(MemberId.value + "님은 현재 " + aleadyUseSeat.seatNumber + " 번 좌석 사용중입니다." );
         }   else alert("잔여 시간이 부족합니다. 시간을 추가해주세요!")
     }  else   alert("로그인 상태를 확인하세요!");
     location.reload()
@@ -88,7 +92,7 @@ function findMemberRemaingTime(MemberId){
 
 // 사용자가 이미 좌석이 있으면 해당 좌석 번호을 가져온다.
 // 0 아닌 1~10까지 숫자를 반환
-function findMeberSeat(MemberId){
+function findMemberSeat(MemberId){
     let result;
     console.log(MemberId.value)
     $.ajax({
@@ -106,7 +110,8 @@ function findMeberSeat(MemberId){
     })
     if(result != null){
         console.log(result)
-        return result.seatNumber;
+        return result;
+        //return result.seatNumber;
     }
     else
         return 0;
@@ -122,19 +127,21 @@ function recoverSeat(e, MemberId){
 
     if(MemberId.value.length != 0){
         let check = confirm(e.textContent + " 번 좌석을 반납하시겠습니까?")
-        if($(e).attr('value') == MemberId.value & check == true){
-            $.ajax({
-                type: "post",
-                url: "/seat/recover",
-                data: {"id" : MemberId.value, "seatNumber" : e.textContent},
-                success : function(data){
-                    console.log(data)
-                    console.log('통신 성공');
-                },
-                error: function(){
-                    console.log('통신 에러');
-                }
-            })
+        if($(e).attr('value') == MemberId.value){
+            if(check === true){
+                $.ajax({
+                    type: "post",
+                    url: "/seat/recover",
+                    data: {"id" : MemberId.value, "seatNumber" : e.textContent},
+                    success : function(data){
+                        console.log(data)
+                        console.log('통신 성공');
+                    },
+                    error: function(){
+                        console.log('통신 에러');
+                    }
+                })
+            }else alert("취소 되었습니다.")
         }else   alert("권한이 없습니다!");
     } else  alert("로그인 상태를 확인하세요!");
     location.reload()
@@ -219,7 +226,8 @@ function seatBoard(seats, seatByState, MemberId){
    let userseatNumber;
 
    if(MemberId.value.length != 0){
-        userseatNumber = findMeberSeat(MemberId)
+        userseatNumber = findMemberSeat(MemberId)
+        //console.log(userseatNumber)
    }else{
         userseatNumber = 0
    }
@@ -239,7 +247,7 @@ function seatBoard(seats, seatByState, MemberId){
 
     if(MemberId.value.length != 0 & userseatNumber != 0){
         userSeat = document.getElementById("userseat")
-        userSeat.textContent = MemberId.value + " 님의 사용중인 좌석은 " + userseatNumber + " 번 입니다."
+        userSeat.textContent = MemberId.value + " 님의 사용중인 좌석은 " + userseatNumber.seatNumber + " 번 입니다."
     }
 
     useboard = document.getElementById("useseat")
