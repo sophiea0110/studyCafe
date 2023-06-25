@@ -26,6 +26,10 @@ window.addEventListener("load", function(event) {
 
         let member = findMemberSeat(MemberId)
 
+        let MemberTime = findMemberRemaingTime(MemberId)
+        console.log(MemberTime)
+
+
 })
 
 // 좌석 선택(selectMemberSeat)
@@ -63,7 +67,7 @@ function selectMemberSeat(e, MemberId){
                         console.log('통신 에러');
                     }
                 })
-            }  else    alert(MemberId.value + "님은 현재 " + aleadyUseSeat.seatNumber + " 번 좌석 사용중입니다." );
+            }  else if(aleadyUseSeat.seatNumber != null)    alert(MemberId.value + "님은 현재 " + aleadyUseSeat.seatNumber + " 번 좌석 사용중입니다." );
         }   else alert("잔여 시간이 부족합니다. 시간을 추가해주세요!")
     }  else   alert("로그인 상태를 확인하세요!");
     location.reload()
@@ -224,9 +228,12 @@ function seatBoard(seats, seatByState, MemberId){
    let arrSeat = [];
    let arrState = [];
    let userseatNumber;
+   let MemberTime;
 
    if(MemberId.value.length != 0){
         userseatNumber = findMemberSeat(MemberId)
+        MemberTime = findMemberRemaingTime(MemberId)
+
         //console.log(userseatNumber)
    }else{
         userseatNumber = 0
@@ -246,8 +253,12 @@ function seatBoard(seats, seatByState, MemberId){
     // 사용중이지 않은 좌석
 
     if(MemberId.value.length != 0 & userseatNumber != 0){
+
         userSeat = document.getElementById("userseat")
+        userTime = document.getElementById("realtime")
+
         userSeat.textContent = MemberId.value + " 님의 사용중인 좌석은 " + userseatNumber.seatNumber + " 번 입니다."
+        userTime.textContent = "현재 남은 시간은 " + MemberTime.remainingTime + "분 입니다."
     }
 
     useboard = document.getElementById("useseat")

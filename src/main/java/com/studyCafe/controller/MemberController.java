@@ -85,8 +85,8 @@ public class MemberController {
     @ResponseBody
     public Member MemberIdToRemaingTimeCheck(Member member){
         Member tempMember = memberService.findMember(member.getId());
-        System.out.println(("MemberIdToRemaingTimeCheck = " + member.getId()));
-        System.out.println(tempMember.toString());
+        //System.out.println(("MemberIdToRemaingTimeCheck = " + member.getId()));
+        //System.out.println(tempMember.toString());
         return tempMember;
     }
 

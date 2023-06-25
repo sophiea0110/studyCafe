@@ -111,11 +111,16 @@ public class JpaSeatRepository implements SeatRepository{
             //System.out.println(e);
             //System.out.println("duration = " + duration.getSeconds() / 60);
             long resultTime = duration.getSeconds() / 60;
-            //System.out.println(resultTime);
-            if(resultTime <= 0 ){
+            System.out.println("현재 남은 시간 " + resultTime + "분 남았습니다.");
+            if(resultTime <= 0 ) {
                 System.out.println("이용시간 완료되었습니다.");
                 returnSeat(e);
                 em.createQuery("update Member m set m.remainingTime = 0 where m.id = :id")
+                        .setParameter("id", e.getId())
+                        .executeUpdate();
+            }else {
+                em.createQuery("update Member m set m.remainingTime = :remainingTime where m.id = :id")
+                        .setParameter("remainingTime", resultTime)
                         .setParameter("id", e.getId())
                         .executeUpdate();
             }

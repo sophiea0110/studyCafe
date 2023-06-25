@@ -8,6 +8,5 @@ public interface MemberRepository {
     public Member save(Member member);
     public Member findById(String id);
     public Optional<Member> findByMember(Member member);
-
     public void updateByRemaining(Member member);
 }

@@ -25,7 +25,6 @@ function idCheck(e){
         $.ajax({
             type: "post",
             url: "/members/idCheck",
-            async: false,
             data: { "MemberId" : id.value },
             success: function(data){
                 console.log(data)

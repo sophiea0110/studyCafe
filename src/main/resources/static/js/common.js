@@ -1,15 +1,12 @@
 window.addEventListener("load", function(event) {
-    console.log("hi");
     setInterval(() => {
         seatEndTime();
-    },1000)
+    },30000)
 })
 
 async function seatEndTime() {
     const promise = new Promise((resolve) => {
-        setTimeout(() => {
             resolve('success')
-         }, 60000);
     });
 
     promise.then(() => {
